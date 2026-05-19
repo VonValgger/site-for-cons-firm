@@ -5,6 +5,9 @@ A high-end, "prestige" web presence for a roofing company. The goal is to convey
 
 ## Architecture & Infrastructure
 - **Framework:** [SvelteKit](https://kit.svelte.dev/) (Svelte 5)
+- **Styling:** **Tailwind CSS** for rapid, responsive UI development.
+- **Form Handling:** **Sveltekit-Superforms** with **Zod** for robust, type-safe validation.
+- **Icons:** **Lucide Svelte** (`@lucide/svelte`) for consistent, lightweight iconography.
 - **Standardized Structure:** Strictly follow the SvelteKit directory conventions:
   - `src/routes/`: File-based routing (pages, layouts, server-side actions).
   - `src/lib/`: Shared components, utilities, and server-only code (using `$lib` alias).
@@ -12,10 +15,11 @@ A high-end, "prestige" web presence for a roofing company. The goal is to convey
 - **Deployment:** Optimized for Vercel/Netlify/Cloudflare via `@sveltejs/adapter-auto`.
 
 ## Data Flow & State Management
-- **Lead Generation (Forms):** Use **SvelteKit Form Actions** for the contact form. This ensures:
+- **Lead Generation (Forms):** Use **Sveltekit-Superforms** with **Zod**. This ensures:
   - Progressive enhancement (works without JS).
   - Secure server-side validation.
-  - Seamless integration with the server for email/database submission.
+  - Client-side validation for instant feedback.
+  - Seamless integration with SvelteKit Form Actions.
 - **Rendering Strategy:** 
   - **Prerendering/SSR:** Default to SSR or prerendering for all marketing pages to ensure maximum SEO and fast initial "prestige" load times.
 - **Component State:** Utilize **Svelte 5 Runes** (`$state`, `$derived`, `$props`) for reactive logic within the UI.
@@ -28,8 +32,9 @@ A high-end, "prestige" web presence for a roofing company. The goal is to convey
 4. **Responsive:** Optimized for all devices.
 
 ## Technical Standards
-- **Styling:** Vanilla CSS using modern features (Flexbox, Grid, Custom Properties).
-- **Type Safety:** TypeScript for all logic and prop definitions.
+- **Styling:** Tailwind CSS utility classes. Maintain "prestige" aesthetic by adhering to a consistent color palette and spacing system defined in `tailwind.config.js`.
+- **Type Safety:** TypeScript for all logic, prop definitions, and form schemas.
+- **Icons:** Use Lucide components for all UI iconography.
 - **Performance:** Optimize images for web and minimize bundle size.
 
 ## Development Workflow
