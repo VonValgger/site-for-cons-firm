@@ -1,9 +1,9 @@
 <script lang="ts">
 </script>
 
-<section class="py-32 bg-surface-container-low overflow-hidden" id="references">
+<section class="py-20 bg-surface-container-low overflow-hidden" id="references">
 	<div class="max-w-7xl mx-auto px-6">
-		<div class="mb-20">
+		<div class="mb-12">
 			<span class="text-sm font-label font-bold tracking-[0.2em] uppercase text-on-primary-container mb-4 block">Portfoliomme</span>
 			<h2 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface">Referenssit</h2>
 		</div>
@@ -34,7 +34,7 @@
 				<img
 					alt="Villa Kallio"
 					class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-					src="https://images.unsplash.com/photo-1600607687940-c52af096999c?q=80&w=2070&auto=format&fit=crop"
+					src="https://stopexi.fi/wp-content/uploads/2024/08/kattoremontti-uusi-katto-1-1024x768.jpg"
 				/>
 				<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
 					<h4 class="text-white text-2xl font-bold">Villa Kallio</h4>

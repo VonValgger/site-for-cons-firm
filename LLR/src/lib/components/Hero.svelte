@@ -12,7 +12,7 @@
 		<div class="absolute inset-0 bg-black/50"></div>
 		<div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
 	</div>
-	<div class="relative z-10 max-w-7xl mx-auto px-6 w-full py-32">
+	<div class="relative z-10 max-w-7xl mx-auto px-6 w-full py-20">
 		<div class="max-w-4xl">
 			<span class="inline-block px-4 py-1.5 bg-on-primary-container text-on-primary text-sm font-bold tracking-[0.2em] uppercase mb-8">
 				Pohjoista Ammattitaitoa

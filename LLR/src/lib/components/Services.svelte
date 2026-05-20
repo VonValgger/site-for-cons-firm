@@ -7,28 +7,28 @@
 			title: 'Uudet Kateratkaisut',
 			category: 'Uudiskohteet',
 			description: 'Suunnittelemme ja asennamme modernit pelti-, tiili- ja huopakatot vaativiin arkkitehtonisiin kohteisiin.',
-			image: 'https://images.unsplash.com/photo-1628744448839-4444a72d1746?q=80&w=2070&auto=format&fit=crop'
+			image: 'https://kevytremppa.fi/images/blog/kotikatto/hero-kattoremontti.webp'
 		},
 		{
 			id: '02',
 			title: 'Kattoremontit',
 			category: 'Saneeraus',
 			description: 'Vanhan katon kunnostus pidentää rakennuksen elinkaarta ja nostaa sen arvoa merkittävästi.',
-			image: 'https://images.unsplash.com/photo-1626015383917-7a5444983808?q=80&w=2070&auto=format&fit=crop'
+			image: 'https://kattokeskus.fi/wp-content/uploads/2023/09/Kattokeskus_Ruukki_Tiilikainen.jpg'
 		},
 		{
 			id: '03',
 			title: 'Kunnossapito',
 			category: 'Huolto',
 			description: 'Säännöllinen tarkastus ja puhdistus estävät suuret vauriot ennen kuin ne ehtivät syntyä.',
-			image: 'https://images.unsplash.com/photo-1632759162351-140ef403f909?q=80&w=2070&auto=format&fit=crop'
+			image: 'https://www.ruukki.com/images/default-source/b2c-images/references/renovation/adamante-reference-2.tmb-1920v.jpg?sfvrsn=c0aceb84_38'
 		}
 	];
 </script>
 
-<section class="py-32 bg-surface" id="services">
+<section class="py-20 bg-surface" id="services">
 	<div class="max-w-7xl mx-auto px-6">
-		<div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+		<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
 			<div class="max-w-2xl">
 				<span class="text-sm font-label font-bold tracking-[0.2em] uppercase text-on-primary-container mb-4 block">Asiantuntemus</span>
 				<h2 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface leading-tight">
