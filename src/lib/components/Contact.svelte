@@ -17,7 +17,7 @@
 						</div>
 						<div>
 							<p class="text-slate-400 text-sm font-bold uppercase tracking-widest">Puhelin</p>
-							<p class="text-xl md:text-2xl font-bold">+358 40 123 4567</p>
+							<p class="text-xl md:text-2xl font-bold">+358 11 111 1111</p>
 						</div>
 					</div>
 					<div class="flex items-center gap-6">

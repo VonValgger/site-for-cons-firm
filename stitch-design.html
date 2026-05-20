@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="fi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lassin Laaturemontti Oy | Katto laadun päällä</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#f1f4f6",
+              "on-surface": "#181c1e",
+              "on-error-container": "#93000a",
+              "error": "#ba1a1a",
+              "on-primary": "#ffffff",
+              "on-tertiary-fixed-variant": "#00468a",
+              "on-surface-variant": "#45474c",
+              "secondary": "#555f71",
+              "inverse-surface": "#2d3133",
+              "on-tertiary-container": "#5488d6",
+              "outline-variant": "#c6c6cc",
+              "on-primary-fixed-variant": "#7f2b00",
+              "surface-dim": "#d7dadc",
+              "surface-tint": "#a63b00",
+              "surface-container": "#ebeef0",
+              "primary-container": "#3e1100",
+              "on-secondary-fixed-variant": "#3d4759",
+              "secondary-fixed-dim": "#bdc7dc",
+              "surface-container-lowest": "#ffffff",
+              "inverse-primary": "#ffb599",
+              "primary-fixed-dim": "#ffb599",
+              "surface": "#f7fafc",
+              "inverse-on-surface": "#eef1f3",
+              "on-secondary": "#ffffff",
+              "secondary-fixed": "#d9e3f9",
+              "surface-container-high": "#e5e9eb",
+              "outline": "#76777c",
+              "on-secondary-container": "#596376",
+              "primary-fixed": "#ffdbce",
+              "on-error": "#ffffff",
+              "tertiary-container": "#002045",
+              "error-container": "#ffdad6",
+              "background": "#f7fafc",
+              "surface-bright": "#f7fafc",
+              "on-primary-fixed": "#370e00",
+              "tertiary-fixed": "#d6e3ff",
+              "on-tertiary-fixed": "#001b3c",
+              "surface-variant": "#e0e3e5",
+              "tertiary": "#00081a",
+              "on-tertiary": "#ffffff",
+              "surface-container-highest": "#e0e3e5",
+              "secondary-container": "#d6e0f6",
+              "on-primary-container": "#eb5700",
+              "on-background": "#181c1e",
+              "tertiary-fixed-dim": "#a8c8ff",
+              "primary": "#160300",
+              "on-secondary-fixed": "#121c2c"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Work Sans"],
+              "label": ["Work Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .asymmetric-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+      }
+      .glass-nav {
+        background: rgba(247, 250, 252, 0.85);
+        backdrop-filter: blur(12px);
+      }
+      body {
+        font-size: 1.125rem;
+      }
+      @media (min-width: 768px) {
+        body {
+          font-size: 1.25rem;
+        }
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 glass-nav shadow-sm">
+<div class="flex justify-between items-center px-6 py-5 max-w-7xl mx-auto">
+<div class="text-3xl font-black tracking-tighter text-slate-900">Lassin Laaturemontti Oy</div>
+<nav class="hidden md:flex gap-10 items-center">
+<a class="text-slate-600 hover:text-slate-900 transition-colors font-headline font-bold tracking-tight text-base" href="#services">Palvelut</a>
+<a class="text-slate-600 hover:text-slate-900 transition-colors font-headline font-bold tracking-tight text-base" href="#references">Referenssit</a>
+<a class="text-slate-600 hover:text-slate-900 transition-colors font-headline font-bold tracking-tight text-base" href="#about">Meistä</a>
+<a class="text-slate-600 hover:text-slate-900 transition-colors font-headline font-bold tracking-tight text-base" href="#contact">Yhteystiedot</a>
+<a class="bg-on-primary-container text-on-primary px-8 py-3 rounded-md font-bold hover:opacity-80 transition-opacity active:scale-95 duration-150 text-base" href="#contact-form">
+                    Ota Yhteyttä
+                </a>
+</nav>
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative min-h-screen w-full flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Laadukas katto" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ugPnCVvBY_clmKs6YkIkzv2vijA5x3AgGY-Z3-vC1HnQiIvTzelqEMQ3oryF0l15Sg1YjRO4QR7xmWA3juSFQFuyAyneDzSodvdW0QdWyu8sXSGY47Xo3bdHayZuVhommyXNklFAq8QTjYFQ7Uamirz4oMP2X4CZNv1ygKbOoI5RHCNYC1361SD51fl-eJMh7OQWm4roPr87_LfkwfrGaQDxqqFxWfJoEijqoCZg18kmQbDDcdk-3VdcvSAfNaiCkUOt5PV95cwvg"/>
+<div class="absolute inset-0 bg-black/60"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-6 w-full py-32">
+<div class="max-w-4xl">
+<span class="inline-block px-4 py-1.5 bg-on-primary-container text-on-primary text-sm font-bold tracking-[0.2em] uppercase mb-8">
+                    Pohjoista Ammattitaitoa
+                </span>
+<h1 class="text-7xl md:text-9xl font-headline font-extrabold text-white tracking-tighter leading-[0.85] mb-10 drop-shadow-2xl">
+                    Katto laadun päällä.
+                </h1>
+<p class="text-xl md:text-3xl text-white font-medium max-w-2xl mb-14 leading-relaxed drop-shadow-lg opacity-90">
+                    Lassin Laaturemontti Oy toteuttaa kestävät ja tyylikkäät kattoratkaisut vuosikymmenten kokemuksella. Rakennamme suojaa, joka kestää sukupolvelta toiselle.
+                </p>
+<div class="flex flex-wrap gap-6">
+<a class="bg-on-primary-container text-on-primary px-12 py-6 rounded-md font-bold text-xl hover:bg-primary-container transition-all flex items-center gap-3 shadow-xl" href="#contact-form">
+                        Pyydä Tarjous
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+<a class="border-2 border-white text-white backdrop-blur-md px-12 py-6 rounded-md font-bold text-xl hover:bg-white hover:text-primary transition-all" href="#services">
+                        Palvelumme
+                    </a>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-32 bg-surface" id="services">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+<div class="max-w-2xl">
+<label class="text-sm font-label font-bold tracking-[0.2em] uppercase text-on-primary-container mb-4 block">Asiantuntemus</label>
+<h2 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface leading-tight">
+                        Kattotyöt teollisuuden <br/>tarkkuudella.
+                    </h2>
+</div>
+<p class="text-xl text-on-surface-variant max-w-md leading-relaxed">
+                    Tarjoamme kokonaisvaltaista palvelua suunnittelusta viimeiseen listaan. Meille jokainen harja ja jiiri on kunnia-asia.
+                </p>
+</div>
+<div class="grid md:grid-cols-3 gap-12">
+<!-- Service 1 -->
+<div class="group">
+<div class="h-[450px] overflow-hidden rounded-lg mb-8 relative">
+<img alt="Uudet Kateratkaisut" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/ADBb0ug3Z_bUvKsGFQoDHYFrr9pOM1AylirTQEUZDVB5VFy2XLDXhu2p5yGD1NRjWZYE9MBAHjZJBo46EmPVOZUp-dxbb6x5RQif4SfxaHLmpZqbeaCDHu8ITavCe0XYddXOxqwhSH-QRzI0fxBKh1E0pYhd1qyDYxypqjqBMO4n4L--D3bgvvgD5m-vUoB72h1TAL-QPtfBoIqCnKH1H-JVaTgWO7kZ6_cPZmhnBhpG6U5v3y7C76Y-3wXe0PIyPY5XOh5YEKs-CiBMtA"/>
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors"></div>
+</div>
+<span class="text-sm font-bold tracking-[0.1em] text-on-primary-container uppercase">01. Uudiskohteet</span>
+<h3 class="text-3xl font-headline font-bold mt-3 mb-4">Uudet Kateratkaisut</h3>
+<p class="text-on-surface-variant leading-relaxed mb-6">Suunnittelemme ja asennamme modernit pelti-, tiili- ja huopakatot vaativiin arkkitehtonisiin kohteisiin.</p>
+<a class="inline-flex items-center gap-2 font-bold text-on-surface border-b-2 border-on-primary-container pb-1 hover:gap-4 transition-all" href="#">
+                        Lue lisää <span class="material-symbols-outlined text-base">trending_flat</span>
+</a>
+</div>
+<!-- Service 2 -->
+<div class="group">
+<div class="h-[450px] overflow-hidden rounded-lg mb-8 relative">
+<img alt="Kattoremontti" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/ADBb0ug3Z_bUvKsGFQoDHYFrr9pOM1AylirTQEUZDVB5VFy2XLDXhu2p5yGD1NRjWZYE9MBAHjZJBo46EmPVOZUp-dxbb6x5RQif4SfxaHLmpZqbeaCDHu8ITavCe0XYddXOxqwhSH-QRzI0fxBKh1E0pYhd1qyDYxypqjqBMO4n4L--D3bgvvgD5m-vUoB72h1TAL-QPtfBoIqCnKH1H-JVaTgWO7kZ6_cPZmhnBhpG6U5v3y7C76Y-3wXe0PIyPY5XOh5YEKs-CiBMtA"/>
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors"></div>
+</div>
+<span class="text-sm font-bold tracking-[0.1em] text-on-primary-container uppercase">02. Saneeraus</span>
+<h3 class="text-3xl font-headline font-bold mt-3 mb-4">Kattoremontit</h3>
+<p class="text-on-surface-variant leading-relaxed mb-6">Vanhan katon kunnostus pidentää rakennuksen elinkaarta ja nostaa sen arvoa merkittävästi.</p>
+<a class="inline-flex items-center gap-2 font-bold text-on-surface border-b-2 border-on-primary-container pb-1 hover:gap-4 transition-all" href="#">
+                        Lue lisää <span class="material-symbols-outlined text-base">trending_flat</span>
+</a>
+</div>
+<!-- Service 3 -->
+<div class="group">
+<div class="h-[450px] overflow-hidden rounded-lg mb-8 relative">
+<img alt="Kunnossapito" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/ADBb0ug3Z_bUvKsGFQoDHYFrr9pOM1AylirTQEUZDVB5VFy2XLDXhu2p5yGD1NRjWZYE9MBAHjZJBo46EmPVOZUp-dxbb6x5RQif4SfxaHLmpZqbeaCDHu8ITavCe0XYddXOxqwhSH-QRzI0fxBKh1E0pYhd1qyDYxypqjqBMO4n4L--D3bgvvgD5m-vUoB72h1TAL-QPtfBoIqCnKH1H-JVaTgWO7kZ6_cPZmhnBhpG6U5v3y7C76Y-3wXe0PIyPY5XOh5YEKs-CiBMtA"/>
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors"></div>
+</div>
+<span class="text-sm font-bold tracking-[0.1em] text-on-primary-container uppercase">03. Huolto</span>
+<h3 class="text-3xl font-headline font-bold mt-3 mb-4">Kunnossapito</h3>
+<p class="text-on-surface-variant leading-relaxed mb-6">Säännöllinen tarkastus ja puhdistus estävät suuret vauriot ennen kuin ne ehtivät syntyä.</p>
+<a class="inline-flex items-center gap-2 font-bold text-on-surface border-b-2 border-on-primary-container pb-1 hover:gap-4 transition-all" href="#">
+                        Lue lisää <span class="material-symbols-outlined text-base">trending_flat</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- References (Asymmetric Bento Grid) -->
+<section class="py-32 bg-surface-container-low overflow-hidden" id="references">
+<div class="max-w-7xl mx-auto px-6">
+<div class="mb-20">
+<label class="text-sm font-label font-bold tracking-[0.2em] uppercase text-on-primary-container mb-4 block">Portfoliomme</label>
+<h2 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface">Referenssit</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:h-[900px]">
+<div class="md:col-span-8 md:row-span-2 relative group overflow-hidden rounded-lg">
+<img alt="Project 1" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ug3Z_bUvKsGFQoDHYFrr9pOM1AylirTQEUZDVB5VFy2XLDXhu2p5yGD1NRjWZYE9MBAHjZJBo46EmPVOZUp-dxbb6x5RQif4SfxaHLmpZqbeaCDHu8ITavCe0XYddXOxqwhSH-QRzI0fxBKh1E0pYhd1qyDYxypqjqBMO4n4L--D3bgvvgD5m-vUoB72h1TAL-QPtfBoIqCnKH1H-JVaTgWO7kZ6_cPZmhnBhpG6U5v3y7C76Y-3wXe0PIyPY5XOh5YEKs-CiBMtA"/>
+<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-12">
+<h4 class="text-white text-4xl font-bold mb-2">Asunto-osakeyhtiö Merituuli</h4>
+<p class="text-slate-200 text-xl">2500m² konesaumapeltikatto</p>
+</div>
+</div>
+<div class="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-lg">
+<img alt="Project 2" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ug3Z_bUvKsGFQoDHYFrr9pOM1AylirTQEUZDVB5VFy2XLDXhu2p5yGD1NRjWZYE9MBAHjZJBo46EmPVOZUp-dxbb6x5RQif4SfxaHLmpZqbeaCDHu8ITavCe0XYddXOxqwhSH-QRzI0fxBKh1E0pYhd1qyDYxypqjqBMO4n4L--D3bgvvgD5m-vUoB72h1TAL-QPtfBoIqCnKH1H-JVaTgWO7kZ6_cPZmhnBhpG6U5v3y7C76Y-3wXe0PIyPY5XOh5YEKs-CiBMtA"/>
+<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
+<h4 class="text-white text-2xl font-bold">Omakotitalo Koivu</h4>
+<p class="text-slate-200">Tiilikate-uudistus</p>
+</div>
+</div>
+<div class="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-lg">
+<img alt="Project 3" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ug3Z_bUvKsGFQoDHYFrr9pOM1AylirTQEUZDVB5VFy2XLDXhu2p5yGD1NRjWZYE9MBAHjZJBo46EmPVOZUp-dxbb6x5RQif4SfxaHLmpZqbeaCDHu8ITavCe0XYddXOxqwhSH-QRzI0fxBKh1E0pYhd1qyDYxypqjqBMO4n4L--D3bgvvgD5m-vUoB72h1TAL-QPtfBoIqCnKH1H-JVaTgWO7kZ6_cPZmhnBhpG6U5v3y7C76Y-3wXe0PIyPY5XOh5YEKs-CiBMtA"/>
+<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
+<h4 class="text-white text-2xl font-bold">Villa Kallio</h4>
+<p class="text-slate-200">Erikoisprofiilipelti</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- About / Reliability Gauge -->
+<section class="py-32 bg-surface" id="about">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid md:grid-cols-2 gap-24 items-center">
+<div class="relative">
+<img alt="Laadukas Työnjälki" class="rounded-lg shadow-2xl" src="https://lh3.googleusercontent.com/aida/ADBb0ug3Z_bUvKsGFQoDHYFrr9pOM1AylirTQEUZDVB5VFy2XLDXhu2p5yGD1NRjWZYE9MBAHjZJBo46EmPVOZUp-dxbb6x5RQif4SfxaHLmpZqbeaCDHu8ITavCe0XYddXOxqwhSH-QRzI0fxBKh1E0pYhd1qyDYxypqjqBMO4n4L--D3bgvvgD5m-vUoB72h1TAL-QPtfBoIqCnKH1H-JVaTgWO7kZ6_cPZmhnBhpG6U5v3y7C76Y-3wXe0PIyPY5XOh5YEKs-CiBMtA"/>
+<div class="absolute -bottom-10 -right-10 bg-on-primary-container p-12 hidden lg:block shadow-2xl">
+<div class="text-white text-6xl font-black mb-2">20+</div>
+<div class="text-white/80 font-bold uppercase tracking-widest text-sm">Vuoden Kokemus</div>
+</div>
+</div>
+<div>
+<h2 class="text-5xl font-headline font-extrabold mb-8 tracking-tight">Vakaa kuin peruskallio.</h2>
+<p class="text-xl text-on-surface-variant leading-relaxed mb-12">Lassin Laaturemontti Oy on perheyritys, jonka juuret ovat vahvasti suomalaisessa rakentamisessa. Emme tee vain kattoja; me luomme turvaa ja mielenrauhaa asiakkaillemme. Valitsemme vain parhaat materiaalit ja asentajamme ovat alan huippuammattilaisia.</p>
+<!-- Reliability Gauge -->
+<div class="space-y-12">
+<div class="flex items-start gap-8">
+<span class="text-6xl font-black text-surface-container-highest">01</span>
+<div>
+<h4 class="text-2xl font-bold mb-2">Kartoitus</h4>
+<p class="text-on-surface-variant">Ilmainen arviokäynti ja tarkka analyysi katon nykytilasta.</p>
+</div>
+</div>
+<div class="flex items-start gap-8">
+<span class="text-6xl font-black text-on-primary-container">02</span>
+<div>
+<h4 class="text-2xl font-bold mb-2">Toteutus</h4>
+<p class="text-on-surface-variant">Sujuva ja siisti asennus sovitussa aikataulussa.</p>
+</div>
+</div>
+<div class="flex items-start gap-8">
+<span class="text-6xl font-black text-surface-container-highest">03</span>
+<div>
+<h4 class="text-2xl font-bold mb-2">Takuu</h4>
+<p class="text-on-surface-variant">Alan pisimmät materiaali- ja työtakuut kaikille kohteille.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Info & Form -->
+<section class="py-32 bg-primary" id="contact-form">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-20">
+<div class="text-white">
+<h2 class="text-6xl font-headline font-extrabold mb-8">Aloitetaan projekti jo tänään.</h2>
+<p class="text-slate-400 text-xl mb-16 leading-relaxed max-w-md">
+                        Jätä meille viesti tai soita suoraan. Vastaamme kaikkiin kyselyihin 24 tunnin sisällä.
+                    </p>
+<div class="space-y-10" id="contact">
+<div class="flex items-center gap-6">
+<div class="w-14 h-14 bg-on-primary-container rounded-md flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">call</span>
+</div>
+<div>
+<p class="text-slate-400 text-sm font-bold uppercase tracking-widest">Puhelin</p>
+<p class="text-2xl font-bold">+358 40 123 4567</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="w-14 h-14 bg-on-primary-container rounded-md flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">mail</span>
+</div>
+<div>
+<p class="text-slate-400 text-sm font-bold uppercase tracking-widest">Sähköposti</p>
+<p class="text-2xl font-bold">myynti@kattoura.fi</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="w-14 h-14 bg-on-primary-container rounded-md flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">location_on</span>
+</div>
+<div>
+<p class="text-slate-400 text-sm font-bold uppercase tracking-widest">Toimipiste</p>
+<p class="text-2xl font-bold">Kattokuja 4, 00100 Helsinki</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface p-12 rounded-lg shadow-2xl">
+<form action="#" class="space-y-10">
+<div class="grid md:grid-cols-2 gap-8">
+<div class="relative">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant block mb-3">Nimi</label>
+<input class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:ring-0 py-5 transition-all px-5 text-lg" placeholder="Matti Meikäläinen" type="text"/>
+</div>
+<div class="relative">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant block mb-3">Sähköposti</label>
+<input class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:ring-0 py-5 transition-all px-5 text-lg" placeholder="matti@yritys.fi" type="email"/>
+</div>
+</div>
+<div class="relative">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant block mb-3">Aihe</label>
+<select class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:ring-0 py-5 transition-all px-5 appearance-none text-lg">
+<option>Uusi Katto</option>
+<option>Kattoremontti</option>
+<option>Huolto ja Puhdistus</option>
+<option>Muu kysymys</option>
+</select>
+</div>
+<div class="relative">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant block mb-3">Viesti</label>
+<textarea class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:ring-0 py-5 transition-all px-5 resize-none text-lg" placeholder="Kerro lyhyesti kohteestasi..." rows="5"></textarea>
+</div>
+<button class="w-full bg-on-primary-container text-on-primary py-6 rounded-md font-bold text-xl hover:opacity-90 transition-opacity active:scale-95 shadow-lg" type="submit">
+                            Lähetä Viesti
+                        </button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-slate-900 border-t border-slate-800">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 py-16 gap-8 w-full max-w-7xl mx-auto">
+<div class="flex flex-col items-center md:items-start gap-4">
+<span class="text-3xl font-black text-white">Lassin Laaturemontti Oy</span>
+<p class="font-['Work_Sans'] text-base leading-relaxed text-slate-400 text-center md:text-left">
+                    © 2024 Lassin Laaturemontti Oy. Kaikki oikeudet pidätetään.
+                </p>
+</div>
+<div class="flex gap-10">
+<a class="text-slate-400 hover:text-white transition-colors font-['Work_Sans'] text-base" href="#">Tietosuojaseloste</a>
+<a class="text-slate-400 hover:text-white transition-colors font-['Work_Sans'] text-base" href="#">Toimitusehdot</a>
+<a class="text-slate-400 hover:text-white transition-colors font-['Work_Sans'] text-base" href="#">UKK</a>
+</div>
+<div class="flex gap-8">
+<a class="text-slate-400 hover:text-white transition-all scale-125" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-slate-400 hover:text-white transition-all scale-125" href="#"><span class="material-symbols-outlined">share</span></a>
+</div>
+</div>
+</footer>
+</body></html>
