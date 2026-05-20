@@ -1,15 +1,5 @@
 <script lang="ts">
-	import { Phone, Mail, MapPin, Loader2, CheckCircle2 } from '@lucide/svelte';
-	import { superForm } from 'sveltekit-superforms';
-	import { zodClient } from 'sveltekit-superforms/adapters';
-	import { contactSchema } from '$lib/schemas';
-	
-	let { form: formProps } = $props();
-
-	const { form, errors, constraints, enhance, delayed, posted } = superForm(formProps, {
-		validators: zodClient(contactSchema as any),
-		resetForm: true
-	});
+	import { Phone, Mail, MapPin } from '@lucide/svelte';
 </script>
 
 <section class="py-32 bg-primary" id="contact-form">
@@ -51,51 +41,27 @@
 				</div>
 			</div>
 			<div class="bg-surface p-8 md:p-12 rounded-lg shadow-2xl relative overflow-hidden">
-				{#if $posted}
-					<div class="absolute inset-0 bg-surface/90 backdrop-blur-sm z-10 flex flex-col items-center justify-center p-12 text-center animate-in fade-in duration-500">
-						<CheckCircle2 size={80} class="text-on-primary-container mb-6" />
-						<h3 class="text-3xl font-headline font-bold mb-4">Viesti lähetetty!</h3>
-						<p class="text-on-surface-variant text-lg">Kiitos yhteydenotostasi. Palaamme asiaan mahdollisimman pian.</p>
-						<button 
-							onclick={() => window.location.reload()} 
-							class="mt-8 text-on-primary-container font-bold border-b-2 border-on-primary-container pb-1"
-						>
-							Lähetä uusi viesti
-						</button>
-					</div>
-				{/if}
-
-				<form method="POST" use:enhance class="space-y-6">
+				<form class="space-y-6" onsubmit={(e) => e.preventDefault()}>
 					<div class="grid md:grid-cols-2 gap-6">
 						<div class="relative">
 							<label for="name" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Nimi</label>
 							<input
 								id="name"
 								name="name"
-								bind:value={$form.name}
-								{...$constraints.name}
-								class="w-full bg-surface-container-highest border-0 border-b-2 {$errors.name ? 'border-error' : 'border-transparent'} focus:border-on-primary-container focus:ring-0 py-4 transition-all px-4 text-lg rounded-t-md"
+								class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:ring-0 py-4 transition-all px-4 text-lg rounded-t-md"
 								placeholder="Matti Meikäläinen"
 								type="text"
 							/>
-							{#if $errors.name}
-								<span class="text-error text-xs font-bold mt-1">{$errors.name}</span>
-							{/if}
 						</div>
 						<div class="relative">
 							<label for="email" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Sähköposti</label>
 							<input
 								id="email"
 								name="email"
-								bind:value={$form.email}
-								{...$constraints.email}
-								class="w-full bg-surface-container-highest border-0 border-b-2 {$errors.email ? 'border-error' : 'border-transparent'} focus:border-on-primary-container focus:ring-0 py-4 transition-all px-4 text-lg rounded-t-md"
+								class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:ring-0 py-4 transition-all px-4 text-lg rounded-t-md"
 								placeholder="matti@yritys.fi"
 								type="email"
 							/>
-							{#if $errors.email}
-								<span class="text-error text-xs font-bold mt-1">{$errors.email}</span>
-							{/if}
 						</div>
 					</div>
 					<div class="relative">
@@ -103,7 +69,6 @@
 						<select
 							id="subject"
 							name="subject"
-							bind:value={$form.subject}
 							class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:ring-0 py-4 transition-all px-4 appearance-none text-lg rounded-t-md"
 						>
 							<option>Uusi Katto</option>
@@ -117,27 +82,16 @@
 						<textarea
 							id="message"
 							name="message"
-							bind:value={$form.message}
-							{...$constraints.message}
-							class="w-full bg-surface-container-highest border-0 border-b-2 {$errors.message ? 'border-error' : 'border-transparent'} focus:border-on-primary-container focus:ring-0 py-4 transition-all px-4 resize-none text-lg rounded-t-md"
+							class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:ring-0 py-4 transition-all px-4 resize-none text-lg rounded-t-md"
 							placeholder="Kerro lyhyesti kohteestasi..."
 							rows="5"
 						></textarea>
-						{#if $errors.message}
-							<span class="text-error text-xs font-bold mt-1">{$errors.message}</span>
-						{/if}
 					</div>
 					<button
-						class="w-full bg-on-primary-container text-on-primary py-5 rounded-md font-bold text-xl hover:opacity-90 transition-opacity active:scale-95 shadow-lg flex items-center justify-center gap-3 disabled:opacity-50"
+						class="w-full bg-on-primary-container text-on-primary py-5 rounded-md font-bold text-xl hover:opacity-90 transition-opacity active:scale-95 shadow-lg"
 						type="submit"
-						disabled={$delayed}
 					>
-						{#if $delayed}
-							<Loader2 class="animate-spin" size={24} />
-							Lähetetään...
-						{:else}
-							Lähetä Viesti
-						{/if}
+						Lähetä Viesti
 					</button>
 				</form>
 			</div>
