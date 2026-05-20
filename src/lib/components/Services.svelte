@@ -27,7 +27,7 @@
 </script>
 
 <section class="py-20 bg-surface" id="services">
-	<div class="max-w-7xl mx-auto px-6">
+	<div class="max-w-[1800px] mx-auto px-16">
 		<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
 			<div class="max-w-2xl">
 				<span class="text-sm font-label font-bold tracking-[0.2em] uppercase text-on-primary-container mb-4 block">Asiantuntemus</span>

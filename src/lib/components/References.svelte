@@ -2,7 +2,7 @@
 </script>
 
 <section class="py-20 bg-surface-container-low overflow-hidden" id="references">
-	<div class="max-w-7xl mx-auto px-6">
+	<div class="max-w-[1800px] mx-auto px-16">
 		<div class="mb-12">
 			<span class="text-sm font-label font-bold tracking-[0.2em] uppercase text-on-primary-container mb-4 block">Portfoliomme</span>
 			<h2 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface">Referenssit</h2>

@@ -3,7 +3,7 @@
 </script>
 
 <section class="py-20 bg-primary" id="contact-form">
-	<div class="max-w-7xl mx-auto px-6">
+	<div class="max-w-[1800px] mx-auto px-16">
 		<div class="grid lg:grid-cols-2 gap-20">
 			<div class="text-white">
 				<h2 class="text-5xl md:text-6xl font-headline font-extrabold mb-8">Aloitetaan projekti jo tänään.</h2>

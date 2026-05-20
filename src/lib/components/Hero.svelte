@@ -7,21 +7,21 @@
 		<img
 			alt="Laadukas katto"
 			class="w-full h-full object-cover"
-			src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhBtiSnOHLwyYqyIedH1ph-P7erPFRGHPoT7YsXuneSAwqOtAeS0Ow5xPYklikPMETwBOljW57Dw4MIpxbB2snP2gCMBbtwFuxWx5zBYUS7UyVhoqDgZkBUcNlPrbbBtNjhg15EP-xZ-l1TnXyrPDIGuEymKfro-CZzk6Qve0s9PA8-jE1w6l-nIFhRzPh7hEAEvzpps-46fLB9Z1A1tbK1zbjzPhzOFEvmevWLeVCttu-Dax8Lp3rdZD_T9LI1CP0SwthCRVTBw4"
+			src="https://kattokeskus.fi/wp-content/uploads/2020/08/Ruoteiden-asentaminen-3-scaled.jpg"
 		/>
 		<div class="absolute inset-0 bg-black/50"></div>
 		<div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
 	</div>
-	<div class="relative z-10 max-w-7xl mx-auto px-6 w-full py-20">
+	<div class="relative z-10 max-w-[1800px] mx-auto px-16 w-full py-20">
 		<div class="max-w-4xl">
 			<span class="inline-block px-4 py-1.5 bg-on-primary-container text-on-primary text-sm font-bold tracking-[0.2em] uppercase mb-8">
-				Pohjoista Ammattitaitoa
+				Ei Eteläistä Vaan Aitoa pohjalaasta Ammattitaitoa
 			</span>
 			<h1 class="text-7xl md:text-9xl font-headline font-extrabold text-white tracking-tighter leading-[0.85] mb-10 drop-shadow-2xl">
 				Katto laadun päällä.
 			</h1>
 			<p class="text-xl md:text-3xl text-white font-medium max-w-2xl mb-14 leading-relaxed drop-shadow-lg opacity-95">
-				Lassin Laaturemontti Oy toteuttaa kestävät ja tyylikkäät kattoratkaisut vuosikymmenten kokemuksella. Rakennamme suojaa, joka kestää sukupolvelta toiselle.
+				Lassin Laaturemontti Oy toteuttaa kestävät ja tyylikkäät kattoratkaisut yli vuosikymmenen kokemuksella. Rakennamme suojaa, joka kestää sukupolvelta toiselle.
 			</p>
 			<div class="flex flex-wrap gap-6">
 				<a

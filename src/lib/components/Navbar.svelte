@@ -10,7 +10,7 @@
 </style>
 
 <header class="fixed top-0 w-full z-50 glass-nav shadow-sm">
-	<div class="flex justify-between items-center px-6 py-5 max-w-7xl mx-auto">
+	<div class="flex justify-between items-center px-12 py-5 max-w-[1800px] mx-auto">
 		<div class="text-3xl font-black tracking-tighter text-slate-900">
 			Lassin Laaturemontti Oy
 		</div>
