@@ -2,15 +2,15 @@
 </script>
 
 <section class="py-20 bg-surface" id="about">
-	<div class="max-w-7xl mx-auto px-6">
+	<div class="max-w-[1800px] mx-auto px-16">
 		<div class="grid md:grid-cols-2 gap-24 items-center">
 			<div class="relative">
 				<img
 					alt="Laadukas Työnjälki"
-					class="rounded-lg shadow-2xl"
+					class="rounded-lg shadow-2xl w-full aspect-[8/5] object-cover"
 					src="https://www.kpedu.fi/images/default-source/kpedu-stories-osio/sameli-tuohisto-kokko-ja-lassi-salmela.tmb-hero_image.jpg?Culture=fi&sfvrsn=e01ed54d_2"
 				/>
-				<div class="absolute -bottom-10 -right-10 bg-on-primary-container p-12 hidden lg:block shadow-2xl">
+				<div class="absolute -bottom-5 -right-10 bg-on-primary-container p-12 hidden lg:block shadow-2xl">
 					<div class="text-white text-6xl font-black mb-2">10+</div>
 					<div class="text-white/80 font-bold uppercase tracking-widest text-sm">Vuoden Kokemus</div>
 				</div>
