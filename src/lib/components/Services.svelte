@@ -7,21 +7,24 @@
 			title: 'Uudet Kateratkaisut',
 			category: 'Uudiskohteet',
 			description: 'Suunnittelemme ja asennamme modernit pelti-, tiili- ja huopakatot vaativiin arkkitehtonisiin kohteisiin.',
-			image: 'https://kevytremppa.fi/images/blog/kotikatto/hero-kattoremontti.webp'
+			image: 'https://kevytremppa.fi/images/blog/kotikatto/hero-kattoremontti.webp',
+			href: '/palvelut/kateratkaisut'
 		},
 		{
 			id: '02',
 			title: 'Kattoremontit',
 			category: 'Saneeraus',
 			description: 'Vanhan katon kunnostus pidentää rakennuksen elinkaarta ja nostaa sen arvoa merkittävästi.',
-			image: 'https://kattokeskus.fi/wp-content/uploads/2023/09/Kattokeskus_Ruukki_Tiilikainen.jpg'
+			image: 'https://kattokeskus.fi/wp-content/uploads/2023/09/Kattokeskus_Ruukki_Tiilikainen.jpg',
+			href: '/palvelut/kattoremontit'
 		},
 		{
 			id: '03',
 			title: 'Kunnossapito',
 			category: 'Huolto',
 			description: 'Säännöllinen tarkastus ja puhdistus estävät suuret vauriot ennen kuin ne ehtivät syntyä.',
-			image: 'https://www.ruukki.com/images/default-source/b2c-images/references/renovation/adamante-reference-2.tmb-1920v.jpg?sfvrsn=c0aceb84_38'
+			image: 'https://www.ruukki.com/images/default-source/b2c-images/references/renovation/adamante-reference-2.tmb-1920v.jpg?sfvrsn=c0aceb84_38',
+			href: '#services'
 		}
 	];
 </script>
@@ -42,20 +45,20 @@
 		<div class="grid md:grid-cols-3 gap-12">
 			{#each services as service}
 				<div class="group">
-					<div class="h-[450px] overflow-hidden rounded-lg mb-8 relative">
+					<a href={service.href} class="block h-[450px] overflow-hidden rounded-lg mb-8 relative cursor-pointer">
 						<img
 							alt={service.title}
 							class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
 							src={service.image}
 						/>
 						<div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors"></div>
-					</div>
+					</a>
 					<span class="text-sm font-bold tracking-[0.1em] text-on-primary-container uppercase">{service.id}. {service.category}</span>
 					<h3 class="text-3xl font-headline font-bold mt-3 mb-4">{service.title}</h3>
 					<p class="text-on-surface-variant leading-relaxed mb-6">{service.description}</p>
 					<a
 						class="inline-flex items-center gap-2 font-bold text-on-surface border-b-2 border-on-primary-container pb-1 hover:gap-4 transition-all"
-						href="#services"
+						href={service.href}
 					>
 						Lue lisää <MoveRight size={18} />
 					</a>
