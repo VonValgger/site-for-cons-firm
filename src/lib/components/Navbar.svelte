@@ -15,11 +15,11 @@
 			Lassin Laaturemontti Oy
 		</div>
 		<nav class="hidden md:flex gap-10 items-center">
-			<a class="text-slate-600 hover:text-slate-900 transition-colors font-headline font-bold tracking-tight text-base" href="/#services">Palvelut</a>
-			<a class="text-slate-600 hover:text-slate-900 transition-colors font-headline font-bold tracking-tight text-base" href="/#references">Referenssit</a>
-			<a class="text-slate-600 hover:text-slate-900 transition-colors font-headline font-bold tracking-tight text-base" href="/#about">Meistä</a>
-			<a class="text-slate-600 hover:text-slate-900 transition-colors font-headline font-bold tracking-tight text-base" href="/#contact">Yhteystiedot</a>
-			<a class="bg-on-primary-container text-on-primary px-8 py-3 rounded-md font-bold hover:opacity-80 transition-opacity active:scale-95 duration-150 text-base" href="/#contact-form">
+			<a class="text-slate-700 hover:text-slate-900 transition-colors font-headline font-extrabold tracking-tight text-lg" href="/#services">Palvelut</a>
+			<a class="text-slate-700 hover:text-slate-900 transition-colors font-headline font-extrabold tracking-tight text-lg" href="/#references">Referenssit</a>
+			<a class="text-slate-700 hover:text-slate-900 transition-colors font-headline font-extrabold tracking-tight text-lg" href="/#about">Meistä</a>
+			<a class="text-slate-700 hover:text-slate-900 transition-colors font-headline font-extrabold tracking-tight text-lg" href="/#contact">Yhteystiedot</a>
+			<a class="bg-on-primary-container text-on-primary px-8 py-3 rounded-md font-extrabold hover:opacity-80 transition-opacity active:scale-95 duration-150 text-lg" href="/#contact-form">
 				Ota Yhteyttä
 			</a>
 		</nav>
