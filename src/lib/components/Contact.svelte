@@ -106,8 +106,8 @@
 
 				<form onsubmit={handleSubmit} class="space-y-6">
 					<input type="hidden" name="access_key" value="94d3b768-68fc-4527-877f-2a597a0f5027" />
-					<input type="hidden" name="subject" value="Uusi yhteydenotto - Lassin Laaturemontti" />
-					<input type="hidden" name="from_name" value="Lassin Laaturemontti Nettisivu" />
+					<input type="hidden" name="subject" value="Uusi yhteydenotto - virman_nimi" />
+					<input type="hidden" name="from_name" value="virman_nimi Nettisivu" />
 					<div class="grid md:grid-cols-2 gap-6">
 						<div class="relative">
 							<label for="name" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Nimi</label>

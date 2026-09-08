@@ -92,7 +92,7 @@
 						ARKKITEHTONISTA <br /> <span class="text-on-primary-container">SUOJAA</span> JA TYYLIÄ.
 					</h1>
 					<p class="text-xl md:text-2xl text-white/90 max-w-2xl mb-10 leading-relaxed drop-shadow-lg">
-						Lassin Laaturemontti toteuttaa modernit kattoratkaisut, jotka yhdistävät teollisen kestävyyden ja pohjoismaisen estetiikan. Tarjoamme täydelliset ratkaisut uudisrakentamiseen ja vaativiin saneerauskohteisiin.
+						virman_nimi toteuttaa modernit kattoratkaisut, jotka yhdistävät teollisen kestävyyden ja pohjoismaisen estetiikan. Tarjoamme täydelliset ratkaisut uudisrakentamiseen ja vaativiin saneerauskohteisiin.
 					</p>
 					<div class="flex flex-wrap gap-4">
 						<a href="/#contact-form" class="bg-on-primary-container text-on-primary px-10 py-5 rounded-md font-headline font-bold uppercase tracking-wider hover:opacity-90 transition-all flex items-center gap-3 shadow-xl">
@@ -165,7 +165,7 @@
 				<div class="relative">
 					<div class="absolute -top-12 -left-12 w-64 h-64 bg-on-primary-container/5 rounded-full blur-3xl"></div>
 					<h2 class="font-headline font-extrabold text-4xl md:text-5xl tracking-tight text-primary leading-tight mb-8">
-						MIKSI LASSIN <br /> LAATUREMONTTI?
+						MIKSI virman_nimi?
 					</h2>
 					<div class="space-y-12">
 						{#each benefits as benefit}
@@ -196,7 +196,7 @@
 				</div>
 				<div class="bg-on-primary-container p-12 text-on-primary">
 					<blockquote class="text-2xl font-headline font-bold italic leading-tight mb-6">
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel risus commodo viverra maecenas accumsan lacus vel facilisis. Lassin Laaturemontti teki kattoremontin, joka ylitti odotuksemme – kestävä, tyylikäs ja täysin huoltovapaa ratkaisu."
+						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel risus commodo viverra maecenas accumsan lacus vel facilisis. virman_nimi teki kattoremontin, joka ylitti odotuksemme – kestävä, tyylikäs ja täysin huoltovapaa ratkaisu."
 					</blockquote>
 					<cite class="not-italic font-label uppercase tracking-widest text-sm opacity-80">— Matti S., Omakotitalon omistaja</cite>
 				</div>

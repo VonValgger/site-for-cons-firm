@@ -21,7 +21,7 @@
 				Katto laadun päällä.
 			</h1>
 			<p class="text-xl md:text-3xl text-white font-medium max-w-2xl mb-14 leading-relaxed drop-shadow-lg opacity-95">
-				Lassin Laaturemontti Oy toteuttaa kestävät ja tyylikkäät kattoratkaisut yli vuosikymmenen kokemuksella. Rakennamme suojaa, joka kestää sukupolvelta toiselle.
+				virman_nimi toteuttaa kestävät ja tyylikkäät kattoratkaisut yli vuosikymmenen kokemuksella. Rakennamme suojaa, joka kestää sukupolvelta toiselle.
 			</p>
 			<div class="flex flex-wrap gap-6">
 				<a

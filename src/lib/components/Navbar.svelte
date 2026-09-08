@@ -12,7 +12,7 @@
 <header class="fixed top-0 w-full z-50 glass-nav shadow-sm">
 	<div class="flex justify-between items-center px-12 py-5 max-w-[1800px] mx-auto">
 		<div class="text-3xl font-black tracking-tighter text-slate-900">
-			Lassin Laaturemontti Oy
+			virman_nimi
 		</div>
 		<nav class="hidden md:flex gap-10 items-center">
 			<a class="text-slate-700 hover:text-slate-900 transition-colors font-headline font-extrabold tracking-tight text-lg" href="/#services">Palvelut</a>
