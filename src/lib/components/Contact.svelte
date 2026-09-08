@@ -1,39 +1,52 @@
 <script lang="ts">
-	import { Phone, Mail, MapPin, CheckCircle, AlertCircle } from '@lucide/svelte';
+	import { Phone, Mail, MapPin, CheckCircle2, Loader2 } from '@lucide/svelte';
 
-	let isSubmitting = $state(false);
-	let submitStatus = $state<'idle' | 'success' | 'error'>('idle');
-	let statusMessage = $state('');
+	let status = $state<'idle' | 'submitting' | 'success' | 'error'>('idle');
+	let message = $state('');
 
-	async function handleSubmit(e: SubmitEvent) {
-		e.preventDefault();
-		isSubmitting = true;
-		submitStatus = 'idle';
+	async function handleSubmit(event: SubmitEvent) {
+		event.preventDefault();
+		status = 'submitting';
 
-		const form = e.target as HTMLFormElement;
-		const formData = new FormData(form);
+		const formData = new FormData(event.target as HTMLFormElement);
+		const email = formData.get('email') as string;
+
+		// Check for forbidden characters in email
+		if (/[äöÄÖ]/.test(email)) {
+			status = 'error';
+			message = 'Sähköpostiosoite ei saa sisältää ääkkösiä (ä tai ö).';
+			return;
+		}
+
+		const object = Object.fromEntries(formData);
+		const json = JSON.stringify(object);
 
 		try {
 			const response = await fetch('https://api.web3forms.com/submit', {
 				method: 'POST',
-				body: formData
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json'
+				},
+				body: json
 			});
-
-			const data = await response.json();
-
-			if (data.success) {
-				submitStatus = 'success';
-				statusMessage = 'Viesti lähetetty! Otamme yhteyttä pian.';
-				form.reset();
+			const result = await response.json();
+			if (result.success) {
+				status = 'success';
+				message = 'Viesti lähetetty onnistuneesti! Otamme yhteyttä pian.';
+				(event.target as HTMLFormElement).reset();
+				
+				// Reset status after 5 seconds to allow new submissions
+				setTimeout(() => {
+					status = 'idle';
+				}, 5000);
 			} else {
-				submitStatus = 'error';
-				statusMessage = 'Viestin lähetys epäonnistui. Yritä uudelleen.';
+				status = 'error';
+				message = result.message || 'Lähetys epäonnistui. Yritä uudelleen.';
 			}
-		} catch {
-			submitStatus = 'error';
-			statusMessage = 'Verkkovirhe. Tarkista yhteys ja yritä uudelleen.';
-		} finally {
-			isSubmitting = false;
+		} catch (error) {
+			status = 'error';
+			message = 'Verkkovirhe. Tarkista yhteys ja yritä uudelleen.';
 		}
 	}
 </script>
@@ -77,11 +90,24 @@
 				</div>
 			</div>
 			<div class="bg-surface p-8 md:p-12 rounded-lg shadow-2xl relative overflow-hidden">
-				<form class="space-y-6" onsubmit={handleSubmit}>
+				{#if status === 'success'}
+					<div class="absolute inset-0 bg-surface/95 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-8 animate-in fade-in zoom-in duration-300">
+						<CheckCircle2 size={80} class="text-green-500 mb-6" />
+						<h3 class="text-3xl font-bold mb-4 text-on-surface">Kiitos yhteydenotosta!</h3>
+						<p class="text-on-surface-variant text-lg max-w-xs">{message}</p>
+						<button 
+							onclick={() => status = 'idle'}
+							class="mt-8 text-on-primary-container font-bold hover:underline"
+						>
+							Lähetä uusi viesti
+						</button>
+					</div>
+				{/if}
+
+				<form onsubmit={handleSubmit} class="space-y-6">
 					<input type="hidden" name="access_key" value="94d3b768-68fc-4527-877f-2a597a0f5027" />
 					<input type="hidden" name="subject" value="Uusi yhteydenotto - Lassin Laaturemontti" />
 					<input type="hidden" name="from_name" value="Lassin Laaturemontti Nettisivu" />
-
 					<div class="grid md:grid-cols-2 gap-6">
 						<div class="relative">
 							<label for="name" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Nimi</label>
@@ -92,6 +118,7 @@
 								placeholder="Matti Meikäläinen"
 								type="text"
 								required
+								disabled={status === 'submitting'}
 							/>
 						</div>
 						<div class="relative">
@@ -103,6 +130,7 @@
 								placeholder="matti@yritys.fi"
 								type="email"
 								required
+								disabled={status === 'submitting'}
 							/>
 						</div>
 					</div>
@@ -113,6 +141,7 @@
 							name="topic"
 							class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:ring-0 py-4 transition-all px-4 appearance-none text-lg rounded-t-md"
 							required
+							disabled={status === 'submitting'}
 						>
 							<option value="Uusi Katto">Uusi Katto</option>
 							<option value="Kattoremontti">Kattoremontti</option>
@@ -129,29 +158,29 @@
 							placeholder="Kerro lyhyesti kohteestasi..."
 							rows="5"
 							required
+							disabled={status === 'submitting'}
 						></textarea>
 					</div>
 
-					{#if submitStatus !== 'idle'}
-						<div class="flex items-center gap-3 p-4 rounded-md {submitStatus === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
-							{#if submitStatus === 'success'}
-								<CheckCircle size={20} />
-							{:else}
-								<AlertCircle size={20} />
-							{/if}
-							<span class="font-medium">{statusMessage}</span>
-						</div>
+					{#if status === 'error'}
+						<p class="text-red-500 text-sm font-bold">{message}</p>
 					{/if}
 
 					<button
-						class="w-full bg-on-primary-container text-on-primary py-5 rounded-md font-bold text-xl hover:opacity-90 transition-opacity active:scale-95 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+						class="w-full bg-on-primary-container text-on-primary py-5 rounded-md font-bold text-xl hover:opacity-90 transition-opacity active:scale-95 shadow-lg flex items-center justify-center gap-3 disabled:opacity-50"
 						type="submit"
-						disabled={isSubmitting}
+						disabled={status === 'submitting'}
 					>
-						{isSubmitting ? 'Lähetetään...' : 'Lähetä Viesti'}
+						{#if status === 'submitting'}
+							<Loader2 class="animate-spin" size={24} />
+							Lähetetään...
+						{:else}
+							Lähetä Viesti
+						{/if}
 					</button>
 				</form>
 			</div>
 		</div>
 	</div>
 </section>
+
