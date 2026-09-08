@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import {
@@ -84,7 +85,7 @@
 		<div class="relative z-10 max-w-[1800px] mx-auto px-16 w-full py-32">
 			<!-- Breadcrumb -->
 			<nav class="flex items-center gap-2 text-sm font-medium text-white/70 mb-8" aria-label="Breadcrumb">
-				<a href="/" class="hover:text-on-primary-container transition-colors flex items-center gap-1">
+				<a href="{base}/" class="hover:text-on-primary-container transition-colors flex items-center gap-1">
 					<Home size={16} />
 					Etusivu
 				</a>
@@ -104,7 +105,7 @@
 						Ammattitaitoinen kattoremontti ei ainoastaan suojaa rakennustasi sääolosuhteilta, vaan pidentää merkittävästi sen elinkaarta ja nostaa kiinteistön jälleenmyyntiarvoa.
 					</p>
 					<div class="flex flex-wrap gap-4">
-						<a href="/#contact-form" class="bg-on-primary-container text-on-primary px-10 py-5 rounded-md font-headline font-bold uppercase tracking-wider hover:opacity-90 transition-all flex items-center gap-3 shadow-xl">
+						<a href="{base}/#contact-form" class="bg-on-primary-container text-on-primary px-10 py-5 rounded-md font-headline font-bold uppercase tracking-wider hover:opacity-90 transition-all flex items-center gap-3 shadow-xl">
 							Pyydä Kartoitus <ArrowRight size={20} />
 						</a>
 						<a href="#process" class="border-2 border-white text-white backdrop-blur-md px-10 py-5 rounded-md font-headline font-bold uppercase tracking-wider hover:bg-white hover:text-primary transition-all">
@@ -215,7 +216,7 @@
 			<h2 class="text-white font-headline text-4xl md:text-5xl font-black mb-8">ALOITETAANKO TEIDÄN KATTONNE UUSI ELINKAARI?</h2>
 			<p class="text-white/60 text-lg mb-12 max-w-2xl mx-auto">Ota yhteyttä ja tilaa asiantuntijamme ilmaiselle arviokäynnille. Ei sitoumuksia, vain rehellistä ammattitaitoa.</p>
 			<div class="flex flex-col sm:flex-row gap-4 justify-center">
-				<a href="/#contact-form" class="bg-on-primary-container text-on-primary px-12 py-5 rounded-md font-bold text-xl hover:opacity-90 transition-colors flex items-center justify-center gap-3">
+				<a href="{base}/#contact-form" class="bg-on-primary-container text-on-primary px-12 py-5 rounded-md font-bold text-xl hover:opacity-90 transition-colors flex items-center justify-center gap-3">
 					Varaa Kartoituskäynti <ArrowRight size={20} />
 				</a>
 				<a href="tel:+358123456789" class="bg-white/10 backdrop-blur-md text-white px-12 py-5 rounded-md font-bold text-xl hover:bg-white/20 transition-colors flex items-center justify-center gap-3">

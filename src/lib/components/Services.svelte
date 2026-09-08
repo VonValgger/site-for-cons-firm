@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { MoveRight } from '@lucide/svelte';
+	import { base } from '$app/paths';
 
 	const services = [
 		{
@@ -8,7 +9,7 @@
 			category: 'Uudiskohteet',
 			description: 'Suunnittelemme ja asennamme modernit pelti-, tiili- ja huopakatot vaativiin arkkitehtonisiin kohteisiin.',
 			image: 'https://kevytremppa.fi/images/blog/kotikatto/hero-kattoremontti.webp',
-			href: '/palvelut/kateratkaisut'
+			href: `${base}/palvelut/kateratkaisut`
 		},
 		{
 			id: '02',
@@ -16,7 +17,7 @@
 			category: 'Saneeraus',
 			description: 'Vanhan katon kunnostus pidentää rakennuksen elinkaarta ja nostaa sen arvoa merkittävästi.',
 			image: 'https://kattokeskus.fi/wp-content/uploads/2023/09/Kattokeskus_Ruukki_Tiilikainen.jpg',
-			href: '/palvelut/kattoremontit'
+			href: `${base}/palvelut/kattoremontit`
 		},
 		{
 			id: '03',

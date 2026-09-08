@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import {
@@ -75,7 +76,7 @@
 		<div class="relative z-10 max-w-[1800px] mx-auto px-16 w-full py-32">
 			<!-- Breadcrumb -->
 			<nav class="flex items-center gap-2 text-sm font-medium text-white/70 mb-8" aria-label="Breadcrumb">
-				<a href="/" class="hover:text-on-primary-container transition-colors flex items-center gap-1">
+				<a href="{base}/" class="hover:text-on-primary-container transition-colors flex items-center gap-1">
 					<Home size={16} />
 					Etusivu
 				</a>
@@ -95,10 +96,10 @@
 						virman_nimi toteuttaa modernit kattoratkaisut, jotka yhdistävät teollisen kestävyyden ja pohjoismaisen estetiikan. Tarjoamme täydelliset ratkaisut uudisrakentamiseen ja vaativiin saneerauskohteisiin.
 					</p>
 					<div class="flex flex-wrap gap-4">
-						<a href="/#contact-form" class="bg-on-primary-container text-on-primary px-10 py-5 rounded-md font-headline font-bold uppercase tracking-wider hover:opacity-90 transition-all flex items-center gap-3 shadow-xl">
+						<a href="{base}/#contact-form" class="bg-on-primary-container text-on-primary px-10 py-5 rounded-md font-headline font-bold uppercase tracking-wider hover:opacity-90 transition-all flex items-center gap-3 shadow-xl">
 							Pyydä Kartoitus <ArrowRight size={20} />
 						</a>
-						<a href="/#references" class="border-2 border-white text-white backdrop-blur-md px-10 py-5 rounded-md font-headline font-bold uppercase tracking-wider hover:bg-white hover:text-primary transition-all">
+						<a href="{base}/#references" class="border-2 border-white text-white backdrop-blur-md px-10 py-5 rounded-md font-headline font-bold uppercase tracking-wider hover:bg-white hover:text-primary transition-all">
 							Katso Referenssit
 						</a>
 					</div>
@@ -225,7 +226,7 @@
 					<Phone size={20} />
 					Soita Heti
 				</a>
-				<a href="/#contact-form" class="bg-white text-primary px-10 py-5 rounded-md font-headline font-bold uppercase tracking-widest hover:bg-surface-container-low transition-colors flex items-center justify-center gap-3">
+				<a href="{base}/#contact-form" class="bg-white text-primary px-10 py-5 rounded-md font-headline font-bold uppercase tracking-widest hover:bg-surface-container-low transition-colors flex items-center justify-center gap-3">
 					Pyydä Tarjous
 				</a>
 			</div>
