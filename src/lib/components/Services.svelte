@@ -27,22 +27,54 @@
 			href: '#services'
 		}
 	];
+
+	const stats = [
+		{ label: 'Kokemus', value: '10+', note: 'vuotta kattotöitä Pohjanmaalla' },
+		{ label: 'Takuu', value: '25 v', note: 'materiaali- ja työtakuu kohteille' },
+		{ label: 'Hinnoittelu', value: 'Kiinteä', note: 'tarjous ilman lisälaskuja' },
+		{ label: 'Kartoitus', value: '0 €', note: 'arviokäynti ja kuntoraportti' }
+	];
 </script>
 
 <section class="py-20 bg-surface" id="services">
 	<div class="max-w-[1800px] mx-auto px-16">
-		<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-			<div class="max-w-2xl">
-				<span class="text-sm font-label font-bold tracking-[0.2em] uppercase text-on-primary-container mb-4 block">Asiantuntemus</span>
-				<h2 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface leading-tight">
-					Kattotyöt teollisuuden <br/>tarkkuudella.
+		<div class="grid gap-16 lg:grid-cols-[1.5fr_1fr] lg:gap-x-20 items-end mb-16">
+			<div class="min-w-0">
+				<div class="flex items-baseline gap-6 mb-6">
+					<span class="text-sm font-label font-bold tracking-[0.2em] uppercase text-on-primary-container">Asiantuntemus</span>
+					<span class="text-xs font-medium tracking-[0.2em] uppercase text-on-surface-variant whitespace-nowrap">Palvelut 01 — 03</span>
+				</div>
+				<h2 class="text-5xl md:text-7xl lg:text-8xl font-headline font-extrabold tracking-tighter text-on-surface leading-[0.9] text-balance">
+					Kattotyöt teollisuuden tarkkuudella.
 				</h2>
 			</div>
-			<p class="text-xl text-on-surface-variant max-w-md leading-relaxed">
-				Tarjoamme kokonaisvaltaista palvelua suunnittelusta viimeiseen listaan. Meille jokainen harja ja jiiri on kunnia-asia.
-			</p>
+			<div class="min-w-0 flex flex-col gap-8 pb-2">
+				<p class="text-2xl text-on-surface leading-snug text-pretty">
+					Tarjoamme kokonaisvaltaista palvelua suunnittelusta viimeiseen listaan. Meille jokainen harja ja jiiri on kunnia-asia.
+				</p>
+				<p class="text-lg text-on-surface-variant leading-relaxed text-pretty">
+					Sama työnjohtaja hoitaa kohteen alusta loppuun: kartoituksesta materiaalivalintoihin, asennuksesta luovutukseen ja takuuseen.
+				</p>
+				<a
+					class="self-start inline-flex items-center gap-3 font-bold text-lg text-on-surface border-b-2 border-on-primary-container pb-1 whitespace-nowrap hover:gap-5 transition-all"
+					href="#contact-form"
+				>
+					Pyydä ilmainen kartoitus <MoveRight size={18} class="shrink-0" />
+				</a>
+			</div>
 		</div>
-		<div class="grid md:grid-cols-3 gap-12">
+
+		<div class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-x-10 gap-y-12 mb-20">
+			{#each stats as stat}
+				<div>
+					<span class="block text-xs font-bold uppercase tracking-[0.1em] text-on-primary-container mb-3">{stat.label}</span>
+					<span class="block font-headline font-extrabold text-6xl tracking-tighter leading-none">{stat.value}</span>
+					<p class="text-on-surface-variant text-base mt-2">{stat.note}</p>
+				</div>
+			{/each}
+		</div>
+
+		<div class="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-12">
 			{#each services as service}
 				<div class="group">
 					<a href={service.href} class="block h-[450px] overflow-hidden rounded-lg mb-8 relative cursor-pointer">
