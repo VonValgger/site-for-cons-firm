@@ -1,44 +1,43 @@
-# Project: LLR - Prestige Roofing Website
+# Project: site-for-cons-firm — Roofing / Renovation Company Website
 
 ## Overview
-A high-end, "prestige" web presence for a roofing company. The goal is to convey reliability, quality, and premium service through a clean, modern aesthetic.
+A high-end marketing website for a Finnish roofing / renovation company
+(working name `virman_nimi`, not final). The goal is to convey reliability,
+quality, and premium service through a clean, modern aesthetic. Work in
+progress — not an official site yet.
 
 ## Architecture & Infrastructure
-- **Framework:** [SvelteKit](https://kit.svelte.dev/) (Svelte 5)
-- **Styling:** **Tailwind CSS** for rapid, responsive UI development.
-- **Form Handling:** **Sveltekit-Superforms** with **Zod** for robust, type-safe validation.
-- **Icons:** **Lucide Svelte** (`@lucide/svelte`) for consistent, lightweight iconography.
-- **Standardized Structure:** Strictly follow the SvelteKit directory conventions:
-  - `src/routes/`: File-based routing (pages, layouts, server-side actions).
-  - `src/lib/`: Shared components, utilities, and server-only code (using `$lib` alias).
-  - `static/`: Static assets like high-res images and fonts.
-- **Deployment:** Optimized for Vercel/Netlify/Cloudflare via `@sveltejs/adapter-auto`.
+- **Framework:** [SvelteKit](https://svelte.dev/docs/kit) (Svelte 5, runes) + TypeScript
+- **Styling:** Tailwind CSS v4. Colour tokens, fonts, and radii live in `tailwind.config.js` (Material-derived palette).
+- **Icons:** Lucide (`@lucide/svelte`).
+- **Rendering:** Fully **prerendered static site**. `src/routes/+layout.ts` sets `prerender = true`; `@sveltejs/adapter-static` writes `build/` with a `404.html` fallback. No SSR, no server routes.
+- **Base path:** `kit.paths.base` reads the `BASE_PATH` env var and defaults to the site root. Internal links are prefixed with `base` from `$app/paths` so the site works from a subpath.
+- **Structure:**
+  - `src/routes/`: file-based routing (`+page.svelte`, root `+layout`).
+  - `src/routes/palvelut/`: service detail pages (kateratkaisut, kattoremontit).
+  - `src/lib/components/`: section components (Navbar, Hero, Services, References, About, Contact, Footer).
+  - `static/`: static assets, `robots.txt`, `.nojekyll`.
+- **Deployment:** GitHub Pages via `.github/workflows/deploy.yml` on push to `main` (builds with `BASE_PATH=/site-for-cons-firm`). A future move to a dedicated server or custom domain builds without `BASE_PATH`.
 
-## Data Flow & State Management
-- **Lead Generation (Forms):** Use **Sveltekit-Superforms** with **Zod**. This ensures:
-  - Progressive enhancement (works without JS).
-  - Secure server-side validation.
-  - Client-side validation for instant feedback.
-  - Seamless integration with SvelteKit Form Actions.
-- **Rendering Strategy:** 
-  - **Prerendering/SSR:** Default to SSR or prerendering for all marketing pages to ensure maximum SEO and fast initial "prestige" load times.
-- **Component State:** Utilize **Svelte 5 Runes** (`$state`, `$derived`, `$props`) for reactive logic within the UI.
-- **Shared State:** If needed, use shared rune-based modules in `src/lib` or Svelte stores for cross-component communication.
+## Forms
+- The contact form (`src/lib/components/Contact.svelte`) submits **client-side** with `fetch` to [Web3Forms](https://web3forms.com/) — there is no backend.
+- State is handled with Svelte 5 runes (`$state`). It rejects emails containing `ä`/`ö` (a Web3Forms limitation), shows a submitting/success/error status, and resets after a successful send.
+- Do **not** reintroduce Superforms / Zod / server form actions — the site is static.
 
-## Project Goals
-1. **Prestige Look & Feel:** High-quality imagery, sophisticated typography, and ample whitespace.
-2. **Navigation:** Simple, intuitive navigation at the top.
-3. **Form at Bottom:** A prominent contact/quote form as the primary CTA.
-4. **Responsive:** Optimized for all devices.
+## Design source
+Section layouts track a Claude Design project (`*.dc.html` files, e.g.
+`Etusivu.dc.html`). The standalone `*-design.html` and `stitch-design.html`
+files in the tree are static design references and are not part of the build.
 
 ## Technical Standards
-- **Styling:** Tailwind CSS utility classes. Maintain "prestige" aesthetic by adhering to a consistent color palette and spacing system defined in `tailwind.config.js`.
-- **Type Safety:** TypeScript for all logic, prop definitions, and form schemas.
-- **Icons:** Use Lucide components for all UI iconography.
-- **Performance:** Optimize images for web and minimize bundle size.
+- **Styling:** Tailwind utility classes only; stay on the token palette and spacing scale in `tailwind.config.js`.
+- **Type Safety:** TypeScript for all logic and prop definitions.
+- **Icons:** Lucide components for all UI iconography.
+- **Links:** internal links use `base` from `$app/paths`; section jumps rely on `scroll-margin-top` in `src/app.css` to clear the fixed navbar.
+- **Performance:** optimise images, keep the bundle small.
 
 ## Development Workflow
-1. **Research:** Analyze existing layout in `src/routes/+layout.svelte`.
-2. **Strategy:** Design the visual language and form schema.
-3. **Execution:** Build components in `src/lib/components` and wire up form actions.
-4. **Validation:** Run `npm run check` and test form submissions.
+1. `npm run dev` — dev server on http://localhost:5173.
+2. Build or edit components in `src/lib/components/`.
+3. `npm run check` — svelte-check + TypeScript, must be clean.
+4. `npm run build` then `npm run preview` — verify the static output, including deep links and the contact form.
