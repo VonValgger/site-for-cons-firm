@@ -22,7 +22,7 @@
 				</p>
 				<div class="space-y-8">
 					<div class="flex items-start gap-8">
-						<span class="text-6xl font-black text-surface-container-highest">01</span>
+						<span class="text-6xl font-black text-on-primary-container">01</span>
 						<div>
 							<h4 class="text-2xl font-bold mb-2">Kartoitus</h4>
 							<p class="text-on-surface-variant">Ilmainen arviokäynti ja tarkka analyysi katon nykytilasta.</p>
@@ -36,7 +36,7 @@
 						</div>
 					</div>
 					<div class="flex items-start gap-8">
-						<span class="text-6xl font-black text-surface-container-highest">03</span>
+						<span class="text-6xl font-black text-on-primary-container">03</span>
 						<div>
 							<h4 class="text-2xl font-bold mb-2">Takuu</h4>
 							<p class="text-on-surface-variant">Alan pisimmät materiaali- ja työtakuut kaikille kohteille.</p>
