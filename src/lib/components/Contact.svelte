@@ -54,12 +54,12 @@
 <section class="py-20 bg-primary" id="contact-form">
 	<div class="max-w-[1800px] mx-auto px-16">
 		<div class="grid lg:grid-cols-2 gap-20">
-			<div class="text-white">
+			<div class="text-white" id="contact">
 				<h2 class="text-5xl md:text-6xl font-headline font-extrabold mb-8">Aloitetaan projekti jo tänään.</h2>
 				<p class="text-slate-400 text-xl mb-10 leading-relaxed max-w-md">
 					Jätä meille viesti tai soita suoraan. Vastaamme kaikkiin kyselyihin 24 tunnin sisällä.
 				</p>
-				<div class="space-y-6" id="contact">
+				<div class="space-y-6">
 					<div class="flex items-center gap-6">
 						<div class="w-14 h-14 bg-on-primary-container rounded-md flex items-center justify-center">
 							<Phone size={28} class="text-white" />
