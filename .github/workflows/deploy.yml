@@ -3,6 +3,14 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    # Skip deploys for pushes that only touch docs or design references.
+    # A push that also changes anything else still deploys.
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
+      - '**-design.html'
+      - '.claude/**'
+      - '.vscode/**'
   workflow_dispatch:
 
 permissions:
