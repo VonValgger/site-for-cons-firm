@@ -37,7 +37,10 @@
 
 			event.preventDefault();
 			replaceState(url.href, {});
-			smooth.scrollTo(target);
+			smooth.scrollTo(target, {
+				// The offset assumes a visible navbar, so bring it back on arrival.
+				onComplete: () => window.dispatchEvent(new CustomEvent('navbar:show'))
+			});
 		};
 
 		document.addEventListener('click', onClick, true);

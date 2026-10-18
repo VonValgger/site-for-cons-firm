@@ -8,7 +8,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 </script>
 
-<Navbar />
+<Navbar overlay />
 
 <main>
 	<Hero />
