@@ -1,14 +1,15 @@
 <script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
 </script>
 
 <section class="py-20 bg-surface-container-low overflow-hidden" id="references">
 	<div class="max-w-[1800px] mx-auto px-16">
-		<div class="mb-12">
+		<div class="mb-12" use:reveal>
 			<span class="text-sm font-label font-bold tracking-[0.2em] uppercase text-on-primary-container mb-4 block">Portfoliomme</span>
 			<h2 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface">Referenssit</h2>
 		</div>
 		<div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:h-[900px]">
-			<div class="md:col-span-8 md:row-span-2 relative group overflow-hidden rounded-lg">
+			<div class="md:col-span-8 md:row-span-2 relative group overflow-hidden rounded-lg" use:reveal={{ variant: 'image' }}>
 				<img
 					alt="Asunto-osakeyhtiö Merituuli"
 					class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-[1.04]"
@@ -22,7 +23,7 @@
 					<p class="text-slate-200 text-lg md:text-xl">2500m² konesaumapeltikatto</p>
 				</div>
 			</div>
-			<div class="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-lg min-h-[300px] md:min-h-0">
+			<div class="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-lg min-h-[300px] md:min-h-0" use:reveal={{ variant: 'image', delay: 120 }}>
 				<img
 					alt="Omakotitalo Koivu"
 					class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-[1.04]"
@@ -36,7 +37,7 @@
 					<p class="text-slate-200">Tiilikate-uudistus</p>
 				</div>
 			</div>
-			<div class="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-lg min-h-[300px] md:min-h-0">
+			<div class="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-lg min-h-[300px] md:min-h-0" use:reveal={{ variant: 'image', delay: 240 }}>
 				<img
 					alt="Villa Kallio"
 					class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-[1.04]"

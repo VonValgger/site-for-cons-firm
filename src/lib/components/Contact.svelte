@@ -2,6 +2,7 @@
 	import { Phone, Mail, MapPin, CheckCircle2, Loader2 } from '@lucide/svelte';
 	import { fade, fly, slide } from 'svelte/transition';
 	import { expoOut } from 'svelte/easing';
+	import { reveal } from '$lib/actions/reveal';
 
 	let status = $state<'idle' | 'submitting' | 'success' | 'error'>('idle');
 	let message = $state('');
@@ -56,7 +57,7 @@
 <section class="py-20 bg-primary" id="contact-form">
 	<div class="max-w-[1800px] mx-auto px-16">
 		<div class="grid lg:grid-cols-2 gap-20">
-			<div class="text-white" id="contact">
+			<div class="text-white" id="contact" use:reveal>
 				<h2 class="text-5xl md:text-6xl font-headline font-extrabold mb-8">Aloitetaan projekti jo tänään.</h2>
 				<p class="text-slate-400 text-xl mb-10 leading-relaxed max-w-md">
 					Jätä meille viesti tai soita suoraan. Vastaamme kaikkiin kyselyihin 24 tunnin sisällä.
@@ -91,7 +92,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="bg-surface p-8 md:p-12 rounded-lg shadow-2xl relative overflow-hidden">
+			<div class="bg-surface p-8 md:p-12 rounded-lg shadow-2xl relative overflow-hidden" use:reveal={{ delay: 150 }}>
 				{#if status === 'success'}
 					<div
 						class="absolute inset-0 bg-surface/95 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-8"

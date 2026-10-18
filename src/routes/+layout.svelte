@@ -1,12 +1,14 @@
 <script lang="ts">
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
-	import { onNavigate } from '$app/navigation';
+	import { afterNavigate, onNavigate } from '$app/navigation';
+	import { markNavigation } from '$lib/actions/reveal';
 	import SmoothScroll from '$lib/components/SmoothScroll.svelte';
 
 	let { children } = $props();
 
 	onNavigate((navigation) => {
+		markNavigation(true);
 		if (!document.startViewTransition) return;
 
 		return new Promise((resolve) => {
@@ -16,6 +18,8 @@
 			});
 		});
 	});
+
+	afterNavigate(() => markNavigation(false));
 </script>
 
 <svelte:head>

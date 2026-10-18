@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
 	import { MoveRight } from '@lucide/svelte';
 	import { base } from '$app/paths';
 
@@ -40,7 +41,7 @@
 <section class="py-20 bg-surface" id="services">
 	<div class="max-w-[1800px] mx-auto px-16">
 		<div class="grid gap-16 lg:grid-cols-[1.5fr_1fr] lg:gap-x-20 items-end mb-16">
-			<div class="min-w-0">
+			<div class="min-w-0" use:reveal>
 				<div class="flex items-baseline gap-6 mb-6">
 					<span class="text-sm font-label font-bold tracking-[0.2em] uppercase text-on-primary-container">Asiantuntemus</span>
 					<span class="text-xs font-medium tracking-[0.2em] uppercase text-on-surface-variant whitespace-nowrap">Palvelut 01 — 03</span>
@@ -49,7 +50,7 @@
 					Kattotyöt teollisuuden tarkkuudella.
 				</h2>
 			</div>
-			<div class="min-w-0 flex flex-col gap-8 pb-2">
+			<div class="min-w-0 flex flex-col gap-8 pb-2" use:reveal={{ delay: 120 }}>
 				<p class="text-2xl text-on-surface leading-snug text-pretty">
 					Tarjoamme kokonaisvaltaista palvelua suunnittelusta viimeiseen listaan. Meille jokainen harja ja jiiri on kunnia-asia.
 				</p>
@@ -66,8 +67,8 @@
 		</div>
 
 		<div class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-x-10 gap-y-12 mb-20">
-			{#each stats as stat}
-				<div>
+			{#each stats as stat, i}
+				<div use:reveal={{ delay: i * 90 }}>
 					<span class="block text-xs font-bold uppercase tracking-[0.1em] text-on-primary-container mb-3">{stat.label}</span>
 					<span class="block font-headline font-extrabold text-6xl tracking-tighter leading-none">{stat.value}</span>
 					<p class="text-on-surface-variant text-base mt-2">{stat.note}</p>
@@ -76,9 +77,13 @@
 		</div>
 
 		<div class="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-12">
-			{#each services as service}
+			{#each services as service, i}
 				<div class="group">
-					<a href={service.href} class="block h-[450px] overflow-hidden rounded-lg mb-8 relative cursor-pointer">
+					<a
+						href={service.href}
+						class="block h-[450px] overflow-hidden rounded-lg mb-8 relative cursor-pointer"
+						use:reveal={{ variant: 'image', delay: i * 100 }}
+					>
 						<img
 							alt={service.title}
 							class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-[1.04]"
@@ -88,15 +93,17 @@
 						/>
 						<div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-700 ease-out-expo"></div>
 					</a>
-					<span class="text-sm font-bold tracking-[0.1em] text-on-primary-container uppercase">{service.id}. {service.category}</span>
-					<h3 class="text-3xl font-headline font-bold mt-3 mb-4">{service.title}</h3>
-					<p class="text-on-surface-variant leading-relaxed mb-6">{service.description}</p>
-					<a
-						class="group/link inline-flex items-center gap-2 font-bold text-on-surface border-b-2 border-on-primary-container pb-1"
-						href={service.href}
-					>
-						Lue lisää <MoveRight size={18} class="transition-transform duration-500 ease-out-expo group-hover/link:translate-x-1.5" />
-					</a>
+					<div use:reveal={{ delay: i * 100 + 200 }}>
+						<span class="text-sm font-bold tracking-[0.1em] text-on-primary-container uppercase">{service.id}. {service.category}</span>
+						<h3 class="text-3xl font-headline font-bold mt-3 mb-4">{service.title}</h3>
+						<p class="text-on-surface-variant leading-relaxed mb-6">{service.description}</p>
+						<a
+							class="group/link inline-flex items-center gap-2 font-bold text-on-surface border-b-2 border-on-primary-container pb-1"
+							href={service.href}
+						>
+							Lue lisää <MoveRight size={18} class="transition-transform duration-500 ease-out-expo group-hover/link:translate-x-1.5" />
+						</a>
+					</div>
 				</div>
 			{/each}
 		</div>

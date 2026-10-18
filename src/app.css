@@ -46,6 +46,43 @@ h2 {
 	}
 }
 
+/* Scroll reveals (src/lib/actions/reveal.ts) */
+.reveal {
+	transition-delay: var(--reveal-delay, 0ms);
+	transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-up {
+	transition-property: opacity, transform;
+	transition-duration: 900ms;
+}
+
+.reveal-up:not(.is-revealed) {
+	opacity: 0;
+	transform: translate3d(0, 32px, 0);
+}
+
+/* Wipes open from the bottom while the photo settles. */
+.reveal-image {
+	/* Negative inset so shadows aren't cut off once the wipe finishes. */
+	clip-path: inset(-4rem);
+	transition-property: clip-path, transform;
+	transition-duration: 1200ms;
+}
+
+.reveal-image:not(.is-revealed) {
+	clip-path: inset(100% -4rem -4rem -4rem);
+}
+
+.reveal-image:is(img):not(.is-revealed),
+.reveal-image:not(.is-revealed) img {
+	transform: scale(1.08);
+}
+
+.reveal-image img {
+	transition: transform 1400ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+}
+
 /* View Transitions */
 @keyframes fade-in {
 	from { opacity: 0; }
