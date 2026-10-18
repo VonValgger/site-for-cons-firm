@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
+	import { reveal } from '$lib/actions/reveal';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import {
@@ -58,11 +59,11 @@
 	];
 </script>
 
-<Navbar />
+<Navbar overlay />
 
 <main>
 	<!-- Hero Section with Split Layout -->
-	<section class="relative min-h-[85vh] w-full flex items-center overflow-hidden">
+	<section id="hero" class="relative min-h-[85vh] w-full flex items-center overflow-hidden">
 		<!-- Subtle Background Image -->
 		<div class="absolute inset-0 z-0">
 			<img
@@ -75,8 +76,8 @@
 
 		<div class="relative z-10 max-w-[1800px] mx-auto px-16 w-full py-32">
 			<!-- Breadcrumb -->
-			<nav class="flex items-center gap-2 text-sm font-medium text-white/70 mb-8" aria-label="Breadcrumb">
-				<a href="{base}/" class="hover:text-on-primary-container transition-colors flex items-center gap-1">
+			<nav class="rise flex items-center gap-2 text-sm font-medium text-white/70 mb-8" aria-label="Breadcrumb" style:--delay="0ms">
+				<a href="{base}/" class="hover:text-on-primary-container transition-colors duration-300 ease-out-expo flex items-center gap-1">
 					<Home size={16} />
 					Etusivu
 				</a>
@@ -88,25 +89,28 @@
 			<div class="grid grid-cols-12 gap-8 items-center">
 				<!-- Left: Text Content -->
 				<div class="col-span-12 lg:col-span-7">
-					<span class="inline-block px-4 py-1.5 bg-on-primary-container text-on-primary text-sm font-bold tracking-[0.2em] uppercase mb-8">Uudet Kateratkaisut</span>
-					<h1 class="font-headline font-extrabold text-5xl md:text-7xl leading-[0.9] tracking-tighter text-white mb-8 drop-shadow-2xl">
+					<p class="rise flex items-center gap-4 mb-8 text-lg md:text-xl font-medium text-white/90" style:--delay="80ms">
+						<span class="h-0.5 w-12 bg-on-primary-container"></span>
+						Uudet kateratkaisut
+					</p>
+					<h1 class="rise font-headline font-extrabold text-5xl md:text-7xl leading-[0.9] tracking-tighter text-white mb-8 drop-shadow-2xl" style:--delay="160ms">
 						ARKKITEHTONISTA <br /> <span class="text-on-primary-container">SUOJAA</span> JA TYYLIÄ.
 					</h1>
-					<p class="text-xl md:text-2xl text-white/90 max-w-2xl mb-10 leading-relaxed drop-shadow-lg">
+					<p class="rise text-xl md:text-2xl text-white/90 max-w-2xl mb-10 leading-relaxed drop-shadow-lg" style:--delay="240ms">
 						virman_nimi toteuttaa modernit kattoratkaisut, jotka yhdistävät teollisen kestävyyden ja pohjoismaisen estetiikan. Tarjoamme täydelliset ratkaisut uudisrakentamiseen ja vaativiin saneerauskohteisiin.
 					</p>
-					<div class="flex flex-wrap gap-4">
-						<a href="{base}/#contact-form" class="bg-on-primary-container text-on-primary px-10 py-5 rounded-md font-headline font-bold uppercase tracking-wider hover:opacity-90 transition-all flex items-center gap-3 shadow-xl">
-							Pyydä Kartoitus <ArrowRight size={20} />
+					<div class="rise flex flex-wrap gap-4" style:--delay="320ms">
+						<a href="{base}/#contact-form" class="group/cta bg-on-primary-container text-on-primary px-10 py-5 rounded-md font-headline font-bold uppercase tracking-wider flex items-center gap-3 shadow-xl transition duration-500 ease-out-expo hover:-translate-y-0.5 hover:shadow-2xl hover:brightness-110 active:translate-y-0">
+							Pyydä Kartoitus <ArrowRight size={20} class="transition-transform duration-500 ease-out-expo group-hover/cta:translate-x-1" />
 						</a>
-						<a href="{base}/#references" class="border-2 border-white text-white backdrop-blur-md px-10 py-5 rounded-md font-headline font-bold uppercase tracking-wider hover:bg-white hover:text-primary transition-all">
+						<a href="{base}/#references" class="border-2 border-white text-white backdrop-blur-md px-10 py-5 rounded-md font-headline font-bold uppercase tracking-wider transition-colors duration-500 ease-out-expo hover:bg-white hover:text-primary">
 							Katso Referenssit
 						</a>
 					</div>
 				</div>
 
 				<!-- Right: Prominent Image -->
-				<div class="col-span-12 lg:col-span-5 relative mt-12 lg:mt-0">
+				<div class="rise col-span-12 lg:col-span-5 relative mt-12 lg:mt-0" style:--delay="200ms">
 					<div class="aspect-[4/5] overflow-hidden rounded-lg shadow-2xl relative">
 						<img
 							alt="Moderni kattoremontti"
@@ -115,7 +119,7 @@
 						/>
 					</div>
 					<!-- Experience Badge -->
-					<div class="absolute -bottom-6 -left-6 bg-on-primary-container text-on-primary p-8 hidden md:block shadow-xl">
+					<div class="rise absolute -bottom-6 -left-6 bg-on-primary-container text-on-primary p-8 hidden md:block shadow-xl" style:--delay="550ms">
 						<span class="font-headline font-black text-5xl">10+</span>
 						<p class="text-xs uppercase tracking-widest font-bold">Vuotta Kokemusta</p>
 					</div>
@@ -127,7 +131,7 @@
 	<!-- Material Choices Section -->
 	<section class="bg-surface-container-low py-24 px-16">
 		<div class="max-w-[1800px] mx-auto">
-			<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+			<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6" use:reveal>
 				<div>
 					<h2 class="font-headline font-extrabold text-4xl tracking-tight text-primary uppercase">Materiaalivalinnat</h2>
 					<p class="text-on-surface-variant mt-2 max-w-md">Käytämme vain markkinoiden parhaiksi todettuja materiaaleja, jotka on suunniteltu kestämään äärimmäiset sääolosuhteet.</p>
@@ -138,9 +142,11 @@
 				</div>
 			</div>
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-				{#each materials as material}
-					<div class="bg-surface-container-lowest p-10 group relative overflow-hidden transition-all duration-500 hover:-translate-y-2 {material.highlighted ? 'border-t-4 border-on-primary-container' : ''}">
-						<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity">
+				{#each materials as material, i}
+					<div
+						use:reveal={{ delay: i * 100 }}
+						class="bg-surface-container-lowest p-10 group relative overflow-hidden transition duration-500 ease-out-expo hover:-translate-y-2 {material.highlighted ? 'border-t-4 border-on-primary-container' : ''}">
+						<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity duration-500 ease-out-expo">
 							<material.icon size={36} class="text-on-primary-container" />
 						</div>
 						<h3 class="font-headline font-bold text-2xl mb-4 uppercase tracking-tight">{material.title}</h3>
@@ -165,12 +171,12 @@
 			<div class="col-span-12 md:col-span-5">
 				<div class="relative">
 					<div class="absolute -top-12 -left-12 w-64 h-64 bg-on-primary-container/5 rounded-full blur-3xl"></div>
-					<h2 class="font-headline font-extrabold text-4xl md:text-5xl tracking-tight text-primary leading-tight mb-8">
+					<h2 class="font-headline font-extrabold text-4xl md:text-5xl tracking-tight text-primary leading-tight mb-8" use:reveal>
 						MIKSI virman_nimi?
 					</h2>
 					<div class="space-y-12">
-						{#each benefits as benefit}
-							<div class="relative pl-16">
+						{#each benefits as benefit, i}
+							<div class="relative pl-16" use:reveal={{ delay: 100 + i * 100 }}>
 								<span class="absolute left-0 top-0 text-3xl font-black text-on-primary-container/20 font-headline">{benefit.number}</span>
 								<h4 class="font-headline font-bold text-xl uppercase tracking-tight mb-2">{benefit.title}</h4>
 								<p class="text-on-surface-variant text-sm leading-relaxed">{benefit.description}</p>
@@ -181,21 +187,23 @@
 			</div>
 			<div class="col-span-12 md:col-span-7 flex flex-col gap-6">
 				<div class="grid grid-cols-2 gap-6">
-					<div class="bg-primary p-8 aspect-square flex flex-col justify-end group">
-						<Hammer size={36} class="text-on-primary-container mb-4 transition-transform group-hover:scale-110" />
+					<div class="bg-primary p-8 aspect-square flex flex-col justify-end group" use:reveal>
+						<Hammer size={36} class="text-on-primary-container mb-4 transition-transform duration-500 ease-out-expo group-hover:scale-110" />
 						<div class="text-white font-headline font-black text-3xl uppercase tracking-tighter leading-none">Ammattitaitoinen <br /> Asennus</div>
 					</div>
-					<div class="bg-surface-container-highest p-8 aspect-square flex flex-col justify-end relative overflow-hidden">
+					<div class="bg-surface-container-highest p-8 aspect-square flex flex-col justify-end relative overflow-hidden" use:reveal={{ delay: 120 }}>
 						<img
 							alt="Laadukas kattomateriaali"
 							class="absolute inset-0 w-full h-full object-cover opacity-20 grayscale"
+							loading="lazy"
+							decoding="async"
 							src="https://kattokeskus.fi/wp-content/uploads/2023/09/Kattokeskus_Ruukki_Tiilikainen.jpg"
 						/>
 						<ShieldCheck size={36} class="text-on-primary-container mb-4 relative z-10" />
 						<div class="text-on-surface font-headline font-black text-3xl uppercase tracking-tighter leading-none relative z-10">Kotimaista <br /> Laatua</div>
 					</div>
 				</div>
-				<div class="bg-on-primary-container p-12 text-on-primary">
+				<div class="bg-on-primary-container p-12 text-on-primary" use:reveal={{ delay: 200 }}>
 					<blockquote class="text-2xl font-headline font-bold italic leading-tight mb-6">
 						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel risus commodo viverra maecenas accumsan lacus vel facilisis. virman_nimi teki kattoremontin, joka ylitti odotuksemme – kestävä, tyylikäs ja täysin huoltovapaa ratkaisu."
 					</blockquote>
@@ -214,7 +222,7 @@
 				<div class="w-20 h-20 border-r border-b border-white/20"></div>
 			</div>
 		</div>
-		<div class="max-w-3xl mx-auto relative z-10">
+		<div class="max-w-3xl mx-auto relative z-10" use:reveal>
 			<h2 class="font-headline font-black text-5xl md:text-7xl text-white mb-8 tracking-tighter uppercase">
 				ALOITETAANKO <br /> <span class="text-on-primary-container">PROJEKTI?</span>
 			</h2>
@@ -222,11 +230,11 @@
 				Ota yhteyttä ja tilaa ilmainen katon kuntotarkastus. Asiantuntijamme auttaa valitsemaan kotiisi parhaiten sopivan ratkaisun.
 			</p>
 			<div class="flex flex-col md:flex-row justify-center gap-6">
-				<a href="tel:+358123456789" class="bg-on-primary-container text-on-primary px-10 py-5 rounded-md font-headline font-bold uppercase tracking-widest hover:scale-105 transition-transform flex items-center justify-center gap-3">
+				<a href="tel:+358123456789" class="bg-on-primary-container text-on-primary px-10 py-5 rounded-md font-headline font-bold uppercase tracking-widest transition duration-300 ease-out-expo hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 flex items-center justify-center gap-3">
 					<Phone size={20} />
 					Soita Heti
 				</a>
-				<a href="{base}/#contact-form" class="bg-white text-primary px-10 py-5 rounded-md font-headline font-bold uppercase tracking-widest hover:bg-surface-container-low transition-colors flex items-center justify-center gap-3">
+				<a href="{base}/#contact-form" class="bg-white text-primary px-10 py-5 rounded-md font-headline font-bold uppercase tracking-widest transition duration-300 ease-out-expo hover:-translate-y-0.5 hover:bg-surface-container-low active:translate-y-0 flex items-center justify-center gap-3">
 					Pyydä Tarjous
 				</a>
 			</div>
