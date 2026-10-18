@@ -58,3 +58,4 @@ part of the build.
 - **Links:** internal links use `base` from `$app/paths`; section jumps rely on `scroll-margin-top` in `src/app.css` to clear the fixed navbar.
 - **Performance:** optimise images, keep the bundle small.
 - **Commits:** Conventional Commits style (`feat:`, `fix:`, `docs:`, `chore:`).
+- **No AI attribution:** never add Claude/AI signatures to commit messages or PR descriptions — no `Co-Authored-By: Claude …` trailers and no "Generated with Claude Code" lines.
