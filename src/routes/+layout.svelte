@@ -2,6 +2,7 @@
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import { onNavigate } from '$app/navigation';
+	import SmoothScroll from '$lib/components/SmoothScroll.svelte';
 
 	let { children } = $props();
 
@@ -20,5 +21,7 @@
 <svelte:head>
 	<link rel="icon" href={favicon} />
 </svelte:head>
+
+<SmoothScroll />
 
 {@render children()}

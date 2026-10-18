@@ -25,7 +25,8 @@
 		if (!ctx) return;
 
 		// Critically damped spring toward the scroll position (rad/s): higher is snappier.
-		const STIFFNESS = 9;
+		// The page scroll is already smoothed by SmoothScroll, so this only rounds off frame steps.
+		const STIFFNESS = 14;
 		// Decoded frames kept around the playhead; more ahead in the scroll direction.
 		const AHEAD = 18;
 		const BEHIND = 8;
