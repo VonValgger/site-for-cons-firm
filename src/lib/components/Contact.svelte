@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { Phone, Mail, MapPin, CheckCircle2, Loader2 } from '@lucide/svelte';
+	import { fade, fly, slide } from 'svelte/transition';
+	import { expoOut } from 'svelte/easing';
 
 	let status = $state<'idle' | 'submitting' | 'success' | 'error'>('idle');
 	let message = $state('');
@@ -91,16 +93,21 @@
 			</div>
 			<div class="bg-surface p-8 md:p-12 rounded-lg shadow-2xl relative overflow-hidden">
 				{#if status === 'success'}
-					<div class="absolute inset-0 bg-surface/95 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-8 animate-in fade-in zoom-in duration-300">
-						<CheckCircle2 size={80} class="text-green-500 mb-6" />
-						<h3 class="text-3xl font-bold mb-4 text-on-surface">Kiitos yhteydenotosta!</h3>
-						<p class="text-on-surface-variant text-lg max-w-xs">{message}</p>
-						<button 
-							onclick={() => status = 'idle'}
-							class="mt-8 text-on-primary-container font-bold hover:underline"
-						>
-							Lähetä uusi viesti
-						</button>
+					<div
+						class="absolute inset-0 bg-surface/95 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-8"
+						transition:fade={{ duration: 300 }}
+					>
+						<div class="flex flex-col items-center" in:fly={{ y: 16, duration: 700, delay: 100, easing: expoOut }}>
+							<CheckCircle2 size={80} class="text-green-500 mb-6" />
+							<h3 class="text-3xl font-bold mb-4 text-on-surface">Kiitos yhteydenotosta!</h3>
+							<p class="text-on-surface-variant text-lg max-w-xs">{message}</p>
+							<button 
+								onclick={() => status = 'idle'}
+								class="mt-8 text-on-primary-container font-bold underline-offset-4 decoration-2 hover:underline"
+							>
+								Lähetä uusi viesti
+							</button>
+						</div>
 					</div>
 				{/if}
 
@@ -114,7 +121,7 @@
 							<input
 								id="name"
 								name="name"
-								class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:ring-0 py-4 transition-all px-4 text-lg rounded-t-md"
+								class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:bg-surface-container-lowest focus:ring-0 py-4 transition-[border-color,background-color] duration-300 ease-out-expo px-4 text-lg rounded-t-md"
 								placeholder="Matti Meikäläinen"
 								type="text"
 								required
@@ -126,7 +133,7 @@
 							<input
 								id="email"
 								name="email"
-								class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:ring-0 py-4 transition-all px-4 text-lg rounded-t-md"
+								class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:bg-surface-container-lowest focus:ring-0 py-4 transition-[border-color,background-color] duration-300 ease-out-expo px-4 text-lg rounded-t-md"
 								placeholder="matti@yritys.fi"
 								type="email"
 								required
@@ -139,7 +146,7 @@
 						<select
 							id="topic"
 							name="topic"
-							class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:ring-0 py-4 transition-all px-4 appearance-none text-lg rounded-t-md"
+							class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:bg-surface-container-lowest focus:ring-0 py-4 transition-[border-color,background-color] duration-300 ease-out-expo px-4 appearance-none text-lg rounded-t-md"
 							required
 							disabled={status === 'submitting'}
 						>
@@ -154,7 +161,7 @@
 						<textarea
 							id="message"
 							name="message"
-							class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:ring-0 py-4 transition-all px-4 resize-none text-lg rounded-t-md"
+							class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-on-primary-container focus:bg-surface-container-lowest focus:ring-0 py-4 transition-[border-color,background-color] duration-300 ease-out-expo px-4 resize-none text-lg rounded-t-md"
 							placeholder="Kerro lyhyesti kohteestasi..."
 							rows="5"
 							required
@@ -163,11 +170,11 @@
 					</div>
 
 					{#if status === 'error'}
-						<p class="text-red-500 text-sm font-bold">{message}</p>
+						<p class="text-error text-sm font-bold" transition:slide={{ duration: 300, easing: expoOut }}>{message}</p>
 					{/if}
 
 					<button
-						class="w-full bg-on-primary-container text-on-primary py-5 rounded-md font-bold text-xl hover:opacity-90 transition-opacity active:scale-95 shadow-lg flex items-center justify-center gap-3 disabled:opacity-50"
+						class="w-full bg-on-primary-container text-on-primary py-5 rounded-md font-bold text-xl shadow-lg transition duration-300 ease-out-expo hover:-translate-y-0.5 hover:brightness-110 hover:shadow-xl active:translate-y-0 active:scale-[0.99] disabled:translate-y-0 flex items-center justify-center gap-3 disabled:opacity-50"
 						type="submit"
 						disabled={status === 'submitting'}
 					>

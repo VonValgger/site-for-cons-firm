@@ -57,10 +57,10 @@
 					Sama työnjohtaja hoitaa kohteen alusta loppuun: kartoituksesta materiaalivalintoihin, asennuksesta luovutukseen ja takuuseen.
 				</p>
 				<a
-					class="self-start inline-flex items-center gap-3 font-bold text-lg text-on-surface border-b-2 border-on-primary-container pb-1 whitespace-nowrap hover:gap-5 transition-all"
+					class="group/link self-start inline-flex items-center gap-3 font-bold text-lg text-on-surface border-b-2 border-on-primary-container pb-1 whitespace-nowrap"
 					href="#contact-form"
 				>
-					Pyydä ilmainen kartoitus <MoveRight size={18} class="shrink-0" />
+					Pyydä ilmainen kartoitus <MoveRight size={18} class="shrink-0 transition-transform duration-500 ease-out-expo group-hover/link:translate-x-1.5" />
 				</a>
 			</div>
 		</div>
@@ -81,19 +81,21 @@
 					<a href={service.href} class="block h-[450px] overflow-hidden rounded-lg mb-8 relative cursor-pointer">
 						<img
 							alt={service.title}
-							class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+							class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-[1.04]"
 							src={service.image}
+							loading="lazy"
+							decoding="async"
 						/>
-						<div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors"></div>
+						<div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-700 ease-out-expo"></div>
 					</a>
 					<span class="text-sm font-bold tracking-[0.1em] text-on-primary-container uppercase">{service.id}. {service.category}</span>
 					<h3 class="text-3xl font-headline font-bold mt-3 mb-4">{service.title}</h3>
 					<p class="text-on-surface-variant leading-relaxed mb-6">{service.description}</p>
 					<a
-						class="inline-flex items-center gap-2 font-bold text-on-surface border-b-2 border-on-primary-container pb-1 hover:gap-4 transition-all"
+						class="group/link inline-flex items-center gap-2 font-bold text-on-surface border-b-2 border-on-primary-container pb-1"
 						href={service.href}
 					>
-						Lue lisää <MoveRight size={18} />
+						Lue lisää <MoveRight size={18} class="transition-transform duration-500 ease-out-expo group-hover/link:translate-x-1.5" />
 					</a>
 				</div>
 			{/each}

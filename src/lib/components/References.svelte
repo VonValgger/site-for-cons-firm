@@ -11,10 +11,13 @@
 			<div class="md:col-span-8 md:row-span-2 relative group overflow-hidden rounded-lg">
 				<img
 					alt="Asunto-osakeyhtiö Merituuli"
-					class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+					class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-[1.04]"
+					loading="lazy"
+					decoding="async"
 					src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop"
 				/>
-				<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8 md:p-12">
+				<div class="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out-expo"></div>
+				<div class="absolute inset-x-0 bottom-0 flex flex-col justify-end p-8 md:p-12 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-700 ease-out-expo">
 					<h4 class="text-white text-3xl md:text-4xl font-bold mb-2">Asunto-osakeyhtiö Merituuli</h4>
 					<p class="text-slate-200 text-lg md:text-xl">2500m² konesaumapeltikatto</p>
 				</div>
@@ -22,10 +25,13 @@
 			<div class="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-lg min-h-[300px] md:min-h-0">
 				<img
 					alt="Omakotitalo Koivu"
-					class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+					class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-[1.04]"
+					loading="lazy"
+					decoding="async"
 					src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
 				/>
-				<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
+				<div class="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out-expo"></div>
+				<div class="absolute inset-x-0 bottom-0 flex flex-col justify-end p-8 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-700 ease-out-expo">
 					<h4 class="text-white text-2xl font-bold">Omakotitalo Koivu</h4>
 					<p class="text-slate-200">Tiilikate-uudistus</p>
 				</div>
@@ -33,10 +39,13 @@
 			<div class="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-lg min-h-[300px] md:min-h-0">
 				<img
 					alt="Villa Kallio"
-					class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+					class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-[1.04]"
+					loading="lazy"
+					decoding="async"
 					src="https://stopexi.fi/wp-content/uploads/2024/08/kattoremontti-uusi-katto-1-1024x768.jpg"
 				/>
-				<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
+				<div class="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out-expo"></div>
+				<div class="absolute inset-x-0 bottom-0 flex flex-col justify-end p-8 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-700 ease-out-expo">
 					<h4 class="text-white text-2xl font-bold">Villa Kallio</h4>
 					<p class="text-slate-200">Erikoisprofiilipelti</p>
 				</div>

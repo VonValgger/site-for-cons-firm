@@ -11,15 +11,15 @@
 			</p>
 		</div>
 		<div class="flex flex-wrap justify-center gap-6 md:gap-10">
-			<a class="text-slate-400 hover:text-white transition-colors font-body text-base" href="#services">Tietosuojaseloste</a>
-			<a class="text-slate-400 hover:text-white transition-colors font-body text-base" href="#services">Toimitusehdot</a>
-			<a class="text-slate-400 hover:text-white transition-colors font-body text-base" href="#services">UKK</a>
+			<a class="text-slate-400 hover:text-white transition-colors duration-300 ease-out-expo font-body text-base" href="#services">Tietosuojaseloste</a>
+			<a class="text-slate-400 hover:text-white transition-colors duration-300 ease-out-expo font-body text-base" href="#services">Toimitusehdot</a>
+			<a class="text-slate-400 hover:text-white transition-colors duration-300 ease-out-expo font-body text-base" href="#services">UKK</a>
 		</div>
 		<div class="flex gap-8">
-			<a class="text-slate-400 hover:text-white transition-all hover:scale-110" href="#services">
+			<a class="text-slate-400 hover:text-white transition duration-300 ease-out-expo hover:-translate-y-0.5" href="#services">
 				<Globe size={24} />
 			</a>
-			<a class="text-slate-400 hover:text-white transition-all hover:scale-110" href="#services">
+			<a class="text-slate-400 hover:text-white transition duration-300 ease-out-expo hover:-translate-y-0.5" href="#services">
 				<Share2 size={24} />
 			</a>
 		</div>
