@@ -16,10 +16,6 @@
 	let wrapper: HTMLDivElement;
 	let canvas: HTMLCanvasElement;
 	let reducedMotion = $state(false);
-	let progress = $state(0);
-
-	// Fade the copy out over the last 30% of the pinned scroll.
-	const contentOpacity = $derived(Math.min(1, (1 - progress) / 0.3));
 
 	onMount(() => {
 		reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -28,68 +24,157 @@
 		const ctx = canvas.getContext('2d');
 		if (!ctx) return;
 
-		// Time constant (s) for easing toward the scroll position: the footage
-		// keeps gliding for roughly 3× this after scrolling stops.
-		const SMOOTHING = 0.35;
+		// Critically damped spring toward the scroll position (rad/s): higher is snappier.
+		const STIFFNESS = 9;
+		// Decoded frames kept around the playhead; more ahead in the scroll direction.
+		const AHEAD = 18;
+		const BEHIND = 8;
+		const MAX_DECODES = 4;
 
-		const frames: HTMLImageElement[] = [];
+		const count = frameUrls.length;
+		const images: HTMLImageElement[] = [];
 		const loaded: boolean[] = [];
-		let current = -1; // eased frame position (fractional)
+		const decoded: (ImageBitmap | HTMLImageElement | undefined)[] = [];
+		const decoding = new Set<number>();
+		let frameW = 0;
+		let frameH = 0;
+
+		let current = -1; // spring position in frames (fractional)
+		let velocity = 0;
+		let direction = 1;
 		let drawn = -1;
+		let range = 0;
 		let lastTime = 0;
 		let raf = 0;
 
-		const targetProgress = () => {
-			const range = wrapper.offsetHeight - window.innerHeight;
-			return range > 0 ? Math.min(1, Math.max(0, -wrapper.getBoundingClientRect().top / range)) : 0;
+		const targetFrame = () => {
+			const p = range > 0 ? Math.min(1, Math.max(0, -wrapper.getBoundingClientRect().top / range)) : 0;
+			return p * (count - 1);
 		};
 
-		const resize = () => {
-			const dpr = Math.min(window.devicePixelRatio || 1, 2);
-			canvas.width = Math.round(canvas.clientWidth * dpr);
-			canvas.height = Math.round(canvas.clientHeight * dpr);
-			drawn = -1;
-			schedule();
+		// Bitmaps decode off the main thread, so drawing them never stalls a frame.
+		const decode = (i: number) => {
+			decoding.add(i);
+			const done = (frame?: ImageBitmap | HTMLImageElement) => {
+				decoding.delete(i);
+				const keep = frame && Math.abs(i - Math.round(current < 0 ? 0 : current)) <= AHEAD + 2;
+				if (keep) decoded[i] = frame;
+				else if (frame instanceof ImageBitmap) frame.close();
+				if (keep && Math.abs(i - current) < 2) drawn = -1;
+				pump();
+				schedule();
+			};
+			const img = images[i];
+			const job: Promise<ImageBitmap | HTMLImageElement> =
+				typeof createImageBitmap === 'function'
+					? createImageBitmap(img)
+					: img.decode().then(() => img);
+			job.then(done, () => done());
 		};
 
-		// Nearest already-loaded frame, so fast scrolling never shows a blank canvas.
-		const nearestLoaded = (index: number) => {
-			for (let d = 0; d < frames.length; d++) {
-				if (loaded[index - d]) return index - d;
-				if (loaded[index + d]) return index + d;
+		// Keep the window around the playhead decoded and release everything outside it.
+		const pump = () => {
+			const center = Math.round(Math.max(current, 0));
+			const lo = center - (direction > 0 ? BEHIND : AHEAD);
+			const hi = center + (direction > 0 ? AHEAD : BEHIND);
+
+			for (let i = 0; i < count; i++) {
+				const frame = decoded[i];
+				if (frame && (i < lo - 2 || i > hi + 2)) {
+					if (frame instanceof ImageBitmap) frame.close();
+					decoded[i] = undefined;
+				}
+			}
+
+			// Nearest frames first, leaning in the direction of travel.
+			for (let d = 0; d <= Math.max(AHEAD, BEHIND) && decoding.size < MAX_DECODES; d++) {
+				for (const i of [center + d * direction, center - d * direction]) {
+					if (i < lo || i > hi || i < 0 || i >= count) continue;
+					if (loaded[i] && !decoded[i] && !decoding.has(i) && decoding.size < MAX_DECODES) decode(i);
+				}
+			}
+		};
+
+		// Nearest decoded frame, so fast scrolling never shows a blank canvas.
+		const nearestDecoded = (index: number) => {
+			for (let d = 0; d < count; d++) {
+				if (decoded[index - d]) return index - d;
+				if (decoded[index + d]) return index + d;
 			}
 			return -1;
 		};
 
+		// Never allocate more backing pixels than the source frame provides: CSS scales it up.
+		const resize = () => {
+			range = wrapper.offsetHeight - window.innerHeight;
+			const w = canvas.clientWidth;
+			const h = canvas.clientHeight;
+			const dpr = Math.min(window.devicePixelRatio || 1, 2);
+			const cover = frameW ? Math.max(w / frameW, h / frameH) : 0;
+			const k = cover ? Math.min(dpr, 1 / cover) : dpr;
+			const width = Math.max(1, Math.round(w * k));
+			const height = Math.max(1, Math.round(h * k));
+			if (width === canvas.width && height === canvas.height) return;
+			canvas.width = width;
+			canvas.height = height;
+			ctx.imageSmoothingQuality = 'high';
+			// Resizing clears the canvas: repaint now rather than on the next frame.
+			drawn = -1;
+			draw();
+		};
+
 		// object-fit: cover
-		const drawFrame = (img: HTMLImageElement, alpha: number) => {
-			const scale = Math.max(canvas.width / img.naturalWidth, canvas.height / img.naturalHeight);
-			const w = img.naturalWidth * scale;
-			const h = img.naturalHeight * scale;
+		const drawFrame = (frame: ImageBitmap | HTMLImageElement, alpha: number) => {
+			const scale = Math.max(canvas.width / frameW, canvas.height / frameH);
+			const w = frameW * scale;
+			const h = frameH * scale;
 			ctx.globalAlpha = alpha;
-			ctx.drawImage(img, (canvas.width - w) / 2, (canvas.height - h) / 2, w, h);
+			ctx.drawImage(frame, (canvas.width - w) / 2, (canvas.height - h) / 2, w, h);
+		};
+
+		const draw = () => {
+			if (current < 0 || Math.abs(current - drawn) <= 0.005) return;
+			const floor = Math.floor(current);
+			const base = nearestDecoded(floor);
+			if (base < 0) return;
+			drawn = current;
+			drawFrame(decoded[base]!, 1);
+			// Cross-fade into the next frame for motion smoother than the source frame rate.
+			const mix = current - floor;
+			const next = decoded[floor + 1];
+			if (base === floor && mix > 0.01 && next) drawFrame(next, mix);
 		};
 
 		const render = (time: number) => {
 			raf = 0;
-			const target = targetProgress() * (frames.length - 1);
+			const target = targetFrame();
 			const dt = lastTime ? Math.min((time - lastTime) / 1000, 0.1) : 0;
 			lastTime = time;
 
-			// Frame-rate independent ease toward the scroll target; jump on first paint.
-			current = current < 0 ? target : current + (target - current) * (1 - Math.exp(-dt / SMOOTHING));
-			if (Math.abs(target - current) < 0.01) current = target;
-			progress = current / (frames.length - 1);
-
-			// Cross-fade between neighbouring frames for motion smoother than the frame rate.
-			const base = nearestLoaded(Math.floor(current));
-			if (base >= 0 && Math.abs(current - drawn) > 0.005) {
-				drawn = current;
-				drawFrame(frames[base], 1);
-				const next = base + 1;
-				const mix = current - Math.floor(current);
-				if (mix > 0 && loaded[next]) drawFrame(frames[next], mix);
+			if (current < 0) {
+				current = target;
+			} else {
+				// Exact critically damped spring step: eases in and out, independent of frame rate.
+				const offset = current - target;
+				const decay = Math.exp(-STIFFNESS * dt);
+				const k = (velocity + STIFFNESS * offset) * dt;
+				const nextOffset = (offset + k) * decay;
+				velocity = (velocity - STIFFNESS * k) * decay;
+				current = target + nextOffset;
+				if (Math.abs(nextOffset) < 0.005 && Math.abs(velocity) < 0.05) {
+					current = target;
+					velocity = 0;
+				}
 			}
+			if (Math.abs(velocity) > 0.05) direction = Math.sign(velocity);
+
+			const progress = current / (count - 1);
+			const fade = Math.min(1, Math.max(0, (progress - 0.8) / 0.2));
+			wrapper.style.setProperty('--hero-progress', progress.toFixed(4));
+			wrapper.style.setProperty('--hero-fade', fade.toFixed(4));
+
+			pump();
+			draw();
 
 			if (current !== target) schedule();
 			else lastTime = 0;
@@ -104,55 +189,70 @@
 			img.decoding = 'async';
 			img.onload = () => {
 				loaded[i] = true;
-				drawn = -1;
-				schedule();
+				if (!frameW) {
+					frameW = img.naturalWidth;
+					frameH = img.naturalHeight;
+					resize();
+				}
+				pump();
 			};
 			img.src = url;
-			frames[i] = img;
+			images[i] = img;
 		});
 
-		resize();
+		const observer = new ResizeObserver(resize);
+		observer.observe(canvas);
+		observer.observe(wrapper);
 		window.addEventListener('scroll', schedule, { passive: true });
-		window.addEventListener('resize', resize);
+		range = wrapper.offsetHeight - window.innerHeight;
+		schedule();
 		return () => {
 			cancelAnimationFrame(raf);
+			observer.disconnect();
 			window.removeEventListener('scroll', schedule);
-			window.removeEventListener('resize', resize);
+			decoded.forEach((frame) => frame instanceof ImageBitmap && frame.close());
 		};
 	});
 </script>
 
-<div bind:this={wrapper} class="relative {reducedMotion ? 'h-screen' : 'h-[300vh]'}">
+<div bind:this={wrapper} id="hero" class="relative {reducedMotion ? 'h-screen' : 'h-[300vh]'}">
 	<section class="sticky top-0 h-screen w-full flex items-center overflow-hidden">
 		<div class="absolute inset-0 z-0">
 			{#if frameUrls.length}
-				<img alt="Laadukas katto" class="absolute inset-0 w-full h-full object-cover" src={frameUrls[0]} />
+				<img alt="Laadukas katto" class="absolute inset-0 w-full h-full object-cover" src={frameUrls[0]} fetchpriority="high" />
 			{/if}
 			<canvas bind:this={canvas} class="absolute inset-0 w-full h-full" aria-hidden="true"></canvas>
 			<div class="absolute inset-0 bg-black/50"></div>
 			<div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
+			<!-- Deepens as the copy leaves, so the hand-off into the next section feels deliberate. -->
+			<div class="absolute inset-0 bg-primary" style:opacity="calc(var(--hero-fade, 0) * 0.35)"></div>
 		</div>
-		<div class="relative z-10 max-w-[1800px] mx-auto px-16 w-full py-20" style:opacity={contentOpacity}>
+		<div
+			class="relative z-10 max-w-[1800px] mx-auto px-16 w-full py-20 will-change-transform"
+			style:opacity="calc(1 - var(--hero-fade, 0))"
+			style:transform="translate3d(0, calc(var(--hero-fade, 0) * -6vh), 0)"
+		>
 			<div class="max-w-4xl">
-				<span class="inline-block px-4 py-1.5 bg-on-primary-container text-on-primary text-sm font-bold tracking-[0.2em] uppercase mb-8">
-					Ei Eteläistä Vaan Aitoa pohjalaasta Ammattitaitoa
-				</span>
-				<h1 class="text-7xl md:text-9xl font-headline font-extrabold text-white tracking-tighter leading-[0.85] mb-10 drop-shadow-2xl">
+				<p class="rise flex items-center gap-4 mb-8 text-lg md:text-xl font-medium text-white/90" style:--delay="0ms">
+					<span class="h-0.5 w-12 bg-on-primary-container"></span>
+					Ei eteläistä vaan aitoa pohjalaasta ammattitaitoa
+				</p>
+				<h1 class="rise text-7xl md:text-9xl font-headline font-extrabold text-white tracking-tighter leading-[0.85] mb-10 drop-shadow-2xl" style:--delay="90ms">
 					Katto laadun päällä.
 				</h1>
-				<p class="text-xl md:text-3xl text-white font-medium max-w-2xl mb-14 leading-relaxed drop-shadow-lg opacity-95">
+				<p class="rise text-xl md:text-3xl text-white font-medium max-w-2xl mb-14 leading-relaxed drop-shadow-lg opacity-95" style:--delay="180ms">
 					virman_nimi toteuttaa kestävät ja tyylikkäät kattoratkaisut yli vuosikymmenen kokemuksella. Rakennamme suojaa, joka kestää sukupolvelta toiselle.
 				</p>
-				<div class="flex flex-wrap gap-6">
+				<div class="rise flex flex-wrap gap-6" style:--delay="270ms">
 					<a
-						class="bg-on-primary-container text-on-primary px-12 py-6 rounded-md font-bold text-xl hover:bg-primary-container transition-all flex items-center gap-3 shadow-xl"
+						class="group/cta bg-on-primary-container text-on-primary px-12 py-6 rounded-md font-bold text-xl flex items-center gap-3 shadow-xl transition duration-500 ease-out-expo hover:-translate-y-0.5 hover:shadow-2xl hover:brightness-110 active:translate-y-0"
 						href="#contact-form"
 					>
 						Pyydä Tarjous
-						<ArrowRight size={24} />
+						<ArrowRight size={24} class="transition-transform duration-500 ease-out-expo group-hover/cta:translate-x-1" />
 					</a>
 					<a
-						class="border-2 border-white text-white backdrop-blur-md px-12 py-6 rounded-md font-bold text-xl hover:bg-white hover:text-primary transition-all"
+						class="border-2 border-white text-white backdrop-blur-md px-12 py-6 rounded-md font-bold text-xl transition-colors duration-500 ease-out-expo hover:bg-white hover:text-primary"
 						href="#services"
 					>
 						Palvelumme
@@ -160,5 +260,32 @@
 				</div>
 			</div>
 		</div>
+		{#if !reducedMotion}
+			<div
+				class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3 text-white/70 text-sm font-medium pointer-events-none"
+				style:opacity="calc(1 - min(1, var(--hero-progress, 0) * 25))"
+				aria-hidden="true"
+			>
+				Vieritä
+				<span class="relative block h-12 w-px overflow-hidden bg-white/20">
+					<span class="cue absolute inset-0 bg-white"></span>
+				</span>
+			</div>
+		{/if}
 	</section>
 </div>
+
+<style>
+	@media (prefers-reduced-motion: no-preference) {
+		.cue {
+			animation: cue 2.4s cubic-bezier(0.65, 0, 0.35, 1) 1.2s infinite;
+			transform: translateY(-100%);
+		}
+	}
+
+	@keyframes cue {
+		0% { transform: translateY(-100%); }
+		50% { transform: translateY(0); }
+		100% { transform: translateY(100%); }
+	}
+</style>
