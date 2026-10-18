@@ -65,6 +65,11 @@ export default {
         "xl": "0.5rem",
         "full": "0.75rem"
       },
+      transitionTimingFunction: {
+        "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "out-quint": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "in-quint": "cubic-bezier(0.55, 0, 1, 0.45)"
+      },
     },
   },
   plugins: [forms],
