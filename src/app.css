@@ -83,6 +83,12 @@ h2 {
 	transition: transform 1400ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
 }
 
+/* Re-arming happens off-screen; skip the fade back to hidden. */
+.reveal-snap,
+.reveal-snap img {
+	transition: none !important;
+}
+
 /* View Transitions */
 @keyframes fade-in {
 	from { opacity: 0; }

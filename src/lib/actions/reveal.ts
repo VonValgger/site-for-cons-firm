@@ -7,10 +7,15 @@ export type RevealOptions = {
 	variant?: 'up' | 'image';
 };
 
-type Reveal = (instant: boolean) => void;
+type Handlers = {
+	show: (instant: boolean) => void;
+	/** Re-arms the entrance once the element has dropped back below the viewport. */
+	rearm: () => void;
+};
 
-const pending = new Map<Element, Set<Reveal>>();
-let observer: IntersectionObserver | undefined;
+const watched = new Map<Element, Set<Handlers>>();
+let showObserver: IntersectionObserver | undefined;
+let rearmObserver: IntersectionObserver | undefined;
 let navigating = false;
 
 /**
@@ -23,41 +28,50 @@ export const markNavigation = (active: boolean) => {
 	navigating = active;
 };
 
-const getObserver = () =>
-	(observer ??= new IntersectionObserver(
+const getObservers = () => {
+	showObserver ??= new IntersectionObserver(
 		(entries) => {
 			for (const entry of entries) {
 				// Already scrolled past (anchor jump, restored scroll): show it without animating.
 				const passed = entry.boundingClientRect.bottom < 0;
 				if (!entry.isIntersecting && !passed) continue;
-				observer!.unobserve(entry.target);
-				pending.get(entry.target)?.forEach((reveal) => reveal(passed));
-				pending.delete(entry.target);
+				watched.get(entry.target)?.forEach((h) => h.show(passed));
 			}
 		},
 		{ rootMargin: '0px 0px -8% 0px' }
-	));
+	);
+	// No margin here: only re-arm once the element is fully out of sight below the fold,
+	// so scrolling back up never visibly hides anything.
+	rearmObserver ??= new IntersectionObserver((entries) => {
+		for (const entry of entries) {
+			const below = entry.boundingClientRect.top >= (entry.rootBounds?.bottom ?? window.innerHeight);
+			if (entry.isIntersecting || !below) continue;
+			watched.get(entry.target)?.forEach((h) => h.rearm());
+		}
+	});
+	return [showObserver, rearmObserver];
+};
 
-const watch = (target: Element, reveal: Reveal) => {
-	const set = pending.get(target);
-	if (set) set.add(reveal);
+const watch = (target: Element, handlers: Handlers) => {
+	const set = watched.get(target);
+	if (set) set.add(handlers);
 	else {
-		pending.set(target, new Set([reveal]));
-		getObserver().observe(target);
+		watched.set(target, new Set([handlers]));
+		getObservers().forEach((o) => o.observe(target));
 	}
 };
 
-const unwatch = (target: Element, reveal: Reveal) => {
-	const set = pending.get(target);
-	if (!set?.delete(reveal) || set.size) return;
-	pending.delete(target);
-	observer?.unobserve(target);
+const unwatch = (target: Element, handlers: Handlers) => {
+	const set = watched.get(target);
+	if (!set?.delete(handlers) || set.size) return;
+	watched.delete(target);
+	[showObserver, rearmObserver].forEach((o) => o?.unobserve(target));
 };
 
 /**
- * Animates an element in the first time it scrolls into view. Content stays
- * visible in the prerendered HTML: on first load only elements below the fold
- * are hidden on mount, and nothing happens under reduced motion.
+ * Animates an element in each time it scrolls into view from below. Content
+ * stays visible in the prerendered HTML: on first load only elements below the
+ * fold are hidden on mount, and nothing happens under reduced motion.
  */
 export const reveal: Action<HTMLElement, RevealOptions | undefined> = (node, options = {}) => {
 	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -65,8 +79,18 @@ export const reveal: Action<HTMLElement, RevealOptions | undefined> = (node, opt
 
 	const variant = options.variant ?? 'up';
 	const classes = ['reveal', `reveal-${variant}`, 'is-revealed'];
-	node.style.setProperty('--reveal-delay', `${options.delay ?? 0}ms`);
-	node.classList.add('reveal', `reveal-${variant}`);
+	let armed = false;
+
+	const arm = () => {
+		armed = true;
+		node.removeEventListener('transitionend', onEnd);
+		node.style.setProperty('--reveal-delay', `${options.delay ?? 0}ms`);
+		// Snap to the hidden state instead of fading out off-screen.
+		node.classList.add('reveal-snap', 'reveal', `reveal-${variant}`);
+		node.classList.remove('is-revealed');
+		void node.offsetWidth;
+		node.classList.remove('reveal-snap');
+	};
 
 	// Drop the reveal styles once the entrance has played, so hover transforms own the element again.
 	const cleanup = () => {
@@ -78,19 +102,28 @@ export const reveal: Action<HTMLElement, RevealOptions | undefined> = (node, opt
 		if (event.target === node) cleanup();
 	};
 
-	const show: Reveal = (instant) => {
-		if (instant) return cleanup();
-		node.addEventListener('transitionend', onEnd);
-		node.classList.add('is-revealed');
+	const handlers: Handlers = {
+		show(instant) {
+			if (!armed) return;
+			armed = false;
+			if (instant) return cleanup();
+			node.addEventListener('transitionend', onEnd);
+			node.classList.add('is-revealed');
+		},
+		rearm() {
+			if (!armed) arm();
+		}
 	};
+
+	arm();
 
 	// A fully clipped element never counts as intersecting in Chrome, so image wipes watch their parent.
 	const target = (variant === 'image' && node.parentElement) || node;
-	watch(target, show);
+	watch(target, handlers);
 
 	return {
 		destroy() {
-			unwatch(target, show);
+			unwatch(target, handlers);
 			node.removeEventListener('transitionend', onEnd);
 		}
 	};
