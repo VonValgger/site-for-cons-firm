@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import { reveal } from '$lib/actions/reveal';
+	import { parallax } from '$lib/actions/parallax';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import {
@@ -76,6 +77,7 @@
 		<!-- Subtle Background Image -->
 		<div class="absolute inset-0 z-0">
 			<img
+				use:parallax
 				alt="Taustakuva"
 				class="w-full h-full object-cover opacity-25"
 				src="https://kattokeskus.fi/wp-content/uploads/2020/08/Ruoteiden-asentaminen-3-scaled.jpg"
@@ -121,7 +123,7 @@
 				<!-- Right: Prominent Image -->
 				<div class="rise col-span-12 lg:col-span-5 relative mt-12 lg:mt-0" style:--delay="200ms">
 					<div class="aspect-[4/5] overflow-hidden rounded-lg shadow-2xl relative">
-						<img
+						<img use:parallax
 							alt="Kattoremontti työssä"
 							class="w-full h-full object-cover"
 							src="https://www.ruukki.com/images/default-source/b2c-images/references/renovation/adamante-reference-2.tmb-1920v.jpg?sfvrsn=c0aceb84_38"
@@ -159,10 +161,10 @@
 				</div>
 				<div class="grid grid-cols-2 gap-4">
 					<div class="aspect-[3/4] bg-surface-container-high rounded-md overflow-hidden mt-8" use:reveal={{ variant: 'image' }}>
-						<img class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo hover:scale-[1.04]" loading="lazy" decoding="async" alt="Kattotiilien asennus" src="https://kattokeskus.fi/wp-content/uploads/2023/09/Kattokeskus_Ruukki_Tiilikainen.jpg" />
+						<img use:parallax class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo hover:scale-[1.04]" loading="lazy" decoding="async" alt="Kattotiilien asennus" src="https://kattokeskus.fi/wp-content/uploads/2023/09/Kattokeskus_Ruukki_Tiilikainen.jpg" />
 					</div>
 					<div class="aspect-[3/4] bg-surface-container-high rounded-md overflow-hidden" use:reveal={{ variant: 'image', delay: 150 }}>
-						<img class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo hover:scale-[1.04]" loading="lazy" decoding="async" alt="Kattorakenne" src="https://kevytremppa.fi/images/blog/kotikatto/hero-kattoremontti.webp" />
+						<img use:parallax class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo hover:scale-[1.04]" loading="lazy" decoding="async" alt="Kattorakenne" src="https://kevytremppa.fi/images/blog/kotikatto/hero-kattoremontti.webp" />
 					</div>
 				</div>
 			</div>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import { reveal } from '$lib/actions/reveal';
+	import { parallax } from '$lib/actions/parallax';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import {
@@ -67,6 +68,7 @@
 		<!-- Subtle Background Image -->
 		<div class="absolute inset-0 z-0">
 			<img
+				use:parallax
 				alt="Taustakuva"
 				class="w-full h-full object-cover opacity-15"
 				src="https://kattokeskus.fi/wp-content/uploads/2020/08/Ruoteiden-asentaminen-3-scaled.jpg"
@@ -112,7 +114,7 @@
 				<!-- Right: Prominent Image -->
 				<div class="rise col-span-12 lg:col-span-5 relative mt-12 lg:mt-0" style:--delay="200ms">
 					<div class="aspect-[4/5] overflow-hidden rounded-lg shadow-2xl relative">
-						<img
+						<img use:parallax
 							alt="Moderni kattoremontti"
 							class="w-full h-full object-cover"
 							src="https://kattokeskus.fi/wp-content/uploads/2023/09/Kattokeskus_Ruukki_Tiilikainen.jpg"

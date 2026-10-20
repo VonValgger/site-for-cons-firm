@@ -76,7 +76,7 @@ h2 {
 
 .reveal-image:is(img):not(.is-revealed),
 .reveal-image:not(.is-revealed) img {
-	transform: scale(1.08);
+	transform: scale(calc(var(--parallax-scale, 1) * 1.08));
 }
 
 .reveal-image img {
@@ -87,6 +87,15 @@ h2 {
 .reveal-snap,
 .reveal-snap img {
 	transition: none !important;
+}
+
+/* Scroll parallax (src/lib/actions/parallax.ts): over-scaled so the drift never exposes an edge. */
+.parallax {
+	--parallax-scale: 1.12;
+	transform: scale(var(--parallax-scale));
+	translate: 0 calc(var(--parallax, 0) * 5%);
+	/* Follows the scroll every frame, so translate must never be transitioned. */
+	transition-property: transform, scale !important;
 }
 
 /* View Transitions */

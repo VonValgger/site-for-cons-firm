@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { reveal } from '$lib/actions/reveal';
+	import { parallax } from '$lib/actions/parallax';
 	import { MoveRight } from '@lucide/svelte';
 	import { base } from '$app/paths';
 
@@ -85,6 +86,7 @@
 						use:reveal={{ variant: 'image', delay: i * 100 }}
 					>
 						<img
+							use:parallax
 							alt={service.title}
 							class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-[1.04]"
 							src={service.image}

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { reveal } from '$lib/actions/reveal';
+	import { parallax } from '$lib/actions/parallax';
 </script>
 
 <section class="py-20 bg-surface-container-low overflow-hidden" id="references">
@@ -11,6 +12,7 @@
 		<div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:h-[900px]">
 			<div class="md:col-span-8 md:row-span-2 relative group overflow-hidden rounded-lg" use:reveal={{ variant: 'image' }}>
 				<img
+					use:parallax
 					alt="Asunto-osakeyhtiö Merituuli"
 					class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-[1.04]"
 					loading="lazy"
@@ -25,6 +27,7 @@
 			</div>
 			<div class="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-lg min-h-[300px] md:min-h-0" use:reveal={{ variant: 'image', delay: 120 }}>
 				<img
+					use:parallax
 					alt="Omakotitalo Koivu"
 					class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-[1.04]"
 					loading="lazy"
@@ -39,6 +42,7 @@
 			</div>
 			<div class="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-lg min-h-[300px] md:min-h-0" use:reveal={{ variant: 'image', delay: 240 }}>
 				<img
+					use:parallax
 					alt="Villa Kallio"
 					class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-[1.04]"
 					loading="lazy"

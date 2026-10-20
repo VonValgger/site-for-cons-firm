@@ -1,19 +1,22 @@
 <script lang="ts">
 	import { reveal } from '$lib/actions/reveal';
+	import { parallax } from '$lib/actions/parallax';
 </script>
 
 <section class="py-20 bg-surface" id="about">
 	<div class="max-w-[1800px] mx-auto px-16">
 		<div class="grid md:grid-cols-2 gap-24 items-center">
 			<div class="relative">
-				<img
-					alt="Laadukas Työnjälki"
-					class="rounded-lg shadow-2xl w-full aspect-[8/5] object-cover"
-					use:reveal={{ variant: 'image' }}
-					loading="lazy"
-					decoding="async"
-					src="https://www.kpedu.fi/images/default-source/kpedu-stories-osio/sameli-tuohisto-kokko-ja-lassi-salmela.tmb-hero_image.jpg?Culture=fi&sfvrsn=e01ed54d_2"
-				/>
+				<div class="rounded-lg shadow-2xl overflow-hidden aspect-[8/5]" use:reveal={{ variant: 'image' }}>
+					<img
+						use:parallax
+						alt="Laadukas Työnjälki"
+						class="w-full h-full object-cover"
+						loading="lazy"
+						decoding="async"
+						src="https://www.kpedu.fi/images/default-source/kpedu-stories-osio/sameli-tuohisto-kokko-ja-lassi-salmela.tmb-hero_image.jpg?Culture=fi&sfvrsn=e01ed54d_2"
+					/>
+				</div>
 				<div class="absolute -bottom-5 -right-10 bg-on-primary-container p-12 hidden lg:block shadow-2xl" use:reveal={{ delay: 450 }}>
 					<div class="text-white text-6xl font-black mb-2">10+</div>
 					<div class="text-white/85 font-medium text-lg">vuoden kokemus</div>
