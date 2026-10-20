@@ -45,17 +45,17 @@
 		{
 			number: '01',
 			title: 'Sertifioitu Laatu',
-			description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel risus commodo viverra maecenas accumsan lacus vel facilisis.'
+			description: 'Asennamme materiaalit valmistajan ohjeiden mukaan, joten valmistajan takuu on voimassa koko pituudeltaan.'
 		},
 		{
 			number: '02',
 			title: 'Takuu Työlle',
-			description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel risus commodo viverra maecenas accumsan lacus vel facilisis.'
+			description: 'Annamme työllemme kirjallisen takuun. Jos asennuksessa ilmenee vika, korjaamme sen veloituksetta.'
 		},
 		{
 			number: '03',
 			title: 'Kiinteä Hinnoittelu',
-			description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel risus commodo viverra maecenas accumsan lacus vel facilisis.'
+			description: 'Kartoituksen jälkeen saat kirjallisen tarjouksen, jonka hinta pitää. Mahdollisista lisätöistä sovitaan aina etukäteen.'
 		}
 	];
 </script>
@@ -207,7 +207,7 @@
 				</div>
 				<div class="bg-on-primary-container p-12 text-on-primary" use:reveal={{ delay: 200 }}>
 					<blockquote class="text-2xl font-headline font-bold italic leading-tight mb-6">
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel risus commodo viverra maecenas accumsan lacus vel facilisis. virman_nimi teki kattoremontin, joka ylitti odotuksemme – kestävä, tyylikäs ja täysin huoltovapaa ratkaisu."
+						"virman_nimi teki kattoremontin, joka ylitti odotuksemme – kestävä, tyylikäs ja täysin huoltovapaa ratkaisu."
 					</blockquote>
 					<cite class="not-italic font-label uppercase tracking-widest text-sm opacity-80">— Matti S., Omakotitalon omistaja</cite>
 				</div>

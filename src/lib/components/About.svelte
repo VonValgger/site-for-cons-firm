@@ -25,7 +25,7 @@
 			<div>
 				<h2 class="text-5xl font-headline font-extrabold mb-6 tracking-tight" use:reveal>Vakaa kuin peruskallio.</h2>
 				<p class="text-xl text-on-surface-variant leading-relaxed mb-8" use:reveal={{ delay: 100 }}>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					Olemme tehneet kattoja Pohjanmaalla yli kymmenen vuotta. Jokaisella kohteella on yksi työnjohtaja kartoituksesta luovutukseen, ja hinta sovitaan kiinteänä ennen kuin työ alkaa. Tiedät aina, kuka vastaa katostasi ja mitä se maksaa.
 				</p>
 				<div class="space-y-8">
 					<div class="flex items-start gap-8" use:reveal={{ delay: 200 }}>
