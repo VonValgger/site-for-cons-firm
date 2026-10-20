@@ -82,7 +82,7 @@
 			<div class="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary/60 to-on-primary-container/20"></div>
 		</div>
 
-		<div class="relative z-10 max-w-[1800px] mx-auto px-16 w-full py-32">
+		<div class="relative z-10 max-w-[1800px] mx-auto px-6 md:px-16 w-full py-32">
 			<!-- Breadcrumb -->
 			<nav class="flex items-center gap-2 text-sm font-medium text-white/70 mb-8" aria-label="Breadcrumb">
 				<a href="{base}/" class="hover:text-on-primary-container transition-colors flex items-center gap-1">
@@ -134,7 +134,7 @@
 	</section>
 
 	<!-- Value Proposition Section -->
-	<section class="bg-surface py-16 px-16">
+	<section class="bg-surface py-16 px-6 md:px-16">
 		<div class="max-w-[1800px] mx-auto">
 			<div class="grid lg:grid-cols-2 gap-20 items-start">
 				<div>
@@ -166,7 +166,7 @@
 	</section>
 
 	<!-- Process Section -->
-	<section id="process" class="bg-surface-container-low py-16 px-16 overflow-hidden">
+	<section id="process" class="bg-surface-container-low py-16 px-6 md:px-16 overflow-hidden">
 		<div class="max-w-[1800px] mx-auto">
 			<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
 				<h2 class="font-headline text-5xl font-black tracking-tight max-w-lg leading-tight">PROSESSI INSPEKTIOSTA VIIMEISTELYYN.</h2>
@@ -185,7 +185,7 @@
 	</section>
 
 	<!-- Testimonials Section -->
-	<section class="py-32 px-16 bg-surface">
+	<section class="py-32 px-6 md:px-16 bg-surface">
 		<div class="max-w-[1800px] mx-auto">
 			<div class="grid lg:grid-cols-3 gap-12">
 				<div class="lg:col-span-1">
@@ -210,7 +210,7 @@
 	</section>
 
 	<!-- CTA Section -->
-	<section class="bg-primary py-24 px-16 relative overflow-hidden">
+	<section class="bg-primary py-24 px-6 md:px-16 relative overflow-hidden">
 		<div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-on-primary-container to-transparent"></div>
 		<div class="max-w-4xl mx-auto text-center relative z-10">
 			<h2 class="text-white font-headline text-4xl md:text-5xl font-black mb-8">ALOITETAANKO TEIDÄN KATTONNE UUSI ELINKAARI?</h2>

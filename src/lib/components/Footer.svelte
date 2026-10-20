@@ -3,7 +3,7 @@
 </script>
 
 <footer class="bg-slate-900 border-t border-slate-800">
-	<div class="flex flex-col md:flex-row justify-between items-center px-16 py-16 gap-8 w-full max-w-[1800px] mx-auto">
+	<div class="flex flex-col md:flex-row justify-between items-center px-6 md:px-16 py-16 gap-8 w-full max-w-[1800px] mx-auto">
 		<div class="flex flex-col items-center md:items-start gap-4">
 			<span class="text-2xl md:text-3xl font-black text-white">virman_nimi</span>
 			<p class="font-body text-base leading-relaxed text-slate-400 text-center md:text-left">

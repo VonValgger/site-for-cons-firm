@@ -73,7 +73,7 @@
 			<div class="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/70 to-primary/50"></div>
 		</div>
 
-		<div class="relative z-10 max-w-[1800px] mx-auto px-16 w-full py-32">
+		<div class="relative z-10 max-w-[1800px] mx-auto px-6 md:px-16 w-full py-32">
 			<!-- Breadcrumb -->
 			<nav class="flex items-center gap-2 text-sm font-medium text-white/70 mb-8" aria-label="Breadcrumb">
 				<a href="{base}/" class="hover:text-on-primary-container transition-colors flex items-center gap-1">
@@ -125,7 +125,7 @@
 	</section>
 
 	<!-- Material Choices Section -->
-	<section class="bg-surface-container-low py-24 px-16">
+	<section class="bg-surface-container-low py-24 px-6 md:px-16">
 		<div class="max-w-[1800px] mx-auto">
 			<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
 				<div>
@@ -160,7 +160,7 @@
 	</section>
 
 	<!-- Benefits Section -->
-	<section class="py-24 px-16 max-w-[1800px] mx-auto overflow-hidden">
+	<section class="py-24 px-6 md:px-16 max-w-[1800px] mx-auto overflow-hidden">
 		<div class="grid grid-cols-12 gap-12 items-center">
 			<div class="col-span-12 md:col-span-5">
 				<div class="relative">
@@ -206,7 +206,7 @@
 	</section>
 
 	<!-- CTA Section -->
-	<section class="bg-primary py-24 px-16 text-center overflow-hidden relative">
+	<section class="bg-primary py-24 px-6 md:px-16 text-center overflow-hidden relative">
 		<div class="absolute inset-0 opacity-10 pointer-events-none">
 			<div class="h-full w-full flex flex-wrap gap-1">
 				<div class="w-20 h-20 border-r border-b border-white/20"></div>

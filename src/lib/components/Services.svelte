@@ -38,7 +38,7 @@
 </script>
 
 <section class="py-20 bg-surface" id="services">
-	<div class="max-w-[1800px] mx-auto px-16">
+	<div class="max-w-[1800px] mx-auto px-6 md:px-16">
 		<div class="grid gap-16 lg:grid-cols-[1.5fr_1fr] lg:gap-x-20 items-end mb-16">
 			<div class="min-w-0">
 				<div class="flex items-baseline gap-6 mb-6">

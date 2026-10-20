@@ -2,7 +2,7 @@
 </script>
 
 <section class="py-20 bg-surface-container-low overflow-hidden" id="references">
-	<div class="max-w-[1800px] mx-auto px-16">
+	<div class="max-w-[1800px] mx-auto px-6 md:px-16">
 		<div class="mb-12">
 			<span class="text-sm font-label font-bold tracking-[0.2em] uppercase text-on-primary-container mb-4 block">Portfoliomme</span>
 			<h2 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface">Referenssit</h2>
@@ -14,7 +14,7 @@
 					class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
 					src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop"
 				/>
-				<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8 md:p-12">
+				<div class="absolute inset-0 bg-primary/40 pointer-fine:opacity-0 pointer-fine:group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8 md:p-12">
 					<h4 class="text-white text-3xl md:text-4xl font-bold mb-2">Asunto-osakeyhtiö Merituuli</h4>
 					<p class="text-slate-200 text-lg md:text-xl">2500m² konesaumapeltikatto</p>
 				</div>
@@ -25,7 +25,7 @@
 					class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
 					src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
 				/>
-				<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
+				<div class="absolute inset-0 bg-primary/40 pointer-fine:opacity-0 pointer-fine:group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
 					<h4 class="text-white text-2xl font-bold">Omakotitalo Koivu</h4>
 					<p class="text-slate-200">Tiilikate-uudistus</p>
 				</div>
@@ -36,7 +36,7 @@
 					class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
 					src="https://stopexi.fi/wp-content/uploads/2024/08/kattoremontti-uusi-katto-1-1024x768.jpg"
 				/>
-				<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
+				<div class="absolute inset-0 bg-primary/40 pointer-fine:opacity-0 pointer-fine:group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
 					<h4 class="text-white text-2xl font-bold">Villa Kallio</h4>
 					<p class="text-slate-200">Erikoisprofiilipelti</p>
 				</div>
