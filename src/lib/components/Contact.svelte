@@ -52,7 +52,7 @@
 </script>
 
 <section class="py-20 bg-primary" id="contact-form">
-	<div class="max-w-[1800px] mx-auto px-16">
+	<div class="max-w-[1800px] mx-auto px-6 md:px-16">
 		<div class="grid lg:grid-cols-2 gap-20">
 			<div class="text-white" id="contact">
 				<h2 class="text-5xl md:text-6xl font-headline font-extrabold mb-8">Aloitetaan projekti jo tänään.</h2>
@@ -66,7 +66,7 @@
 						</div>
 						<div>
 							<p class="text-slate-400 text-sm font-bold uppercase tracking-widest">Puhelin</p>
-							<p class="text-xl md:text-2xl font-bold">+358 11 111 1111</p>
+							<a href="tel:+358111111111" class="text-xl md:text-2xl font-bold hover:text-on-primary-container transition-colors">+358 11 111 1111</a>
 						</div>
 					</div>
 					<div class="flex items-center gap-6">
@@ -75,7 +75,7 @@
 						</div>
 						<div>
 							<p class="text-slate-400 text-sm font-bold uppercase tracking-widest">Sähköposti</p>
-							<p class="text-xl md:text-2xl font-bold">myynti@kattoura.fi</p>
+							<a href="mailto:myynti@kattoura.fi" class="text-xl md:text-2xl font-bold break-all hover:text-on-primary-container transition-colors">myynti@kattoura.fi</a>
 						</div>
 					</div>
 					<div class="flex items-center gap-6">

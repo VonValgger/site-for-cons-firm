@@ -2,7 +2,7 @@
 </script>
 
 <section class="py-20 bg-surface" id="about">
-	<div class="max-w-[1800px] mx-auto px-16">
+	<div class="max-w-[1800px] mx-auto px-6 md:px-16">
 		<div class="grid md:grid-cols-2 gap-24 items-center">
 			<div class="relative">
 				<img
